@@ -1,0 +1,6 @@
+tmp/
+content/source-fragments/
+tools/_vendor/
+__pycache__/
+*.pyc
+AGENTS.md

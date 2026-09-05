@@ -1,0 +1,212 @@
+:root {
+  color-scheme: light;
+  --adt-paper: #ffffff;
+  --adt-ink: #1f2933;
+  --adt-teal: #0f9f8f;
+  --adt-orange: #ed5b21;
+  --adt-shell: #e8efec;
+  --adt-focus: #075985;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--adt-shell);
+}
+
+body.adt-reader-shell {
+  min-height: 100vh;
+  margin: 0;
+  background:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.92), transparent 34rem),
+    var(--adt-shell);
+  color: var(--adt-ink);
+  font-family: Merriweather, Georgia, serif;
+}
+
+.adt-reader-main {
+  width: 100%;
+  padding: clamp(0.5rem, 2vw, 1.5rem) clamp(0.35rem, 2vw, 1.25rem) 7.5rem;
+}
+
+.adt-facsimile-shell {
+  width: min(100%, 74rem);
+  margin: 0 auto;
+  opacity: 0;
+  transition: opacity 160ms ease-out;
+}
+
+.adt-facsimile-shell.opacity-100,
+.adt-facsimile-shell.visible {
+  opacity: 1;
+}
+
+.adt-page-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: min(100%, 61rem);
+  margin: 0 auto 0.65rem;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.9rem;
+}
+
+.adt-printed-page {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.25rem;
+  padding: 0.4rem 0.85rem;
+  border: 1px solid rgba(15, 159, 143, 0.4);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.96);
+  color: #155e59;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(23, 58, 48, 0.08);
+}
+
+.adt-transcript-link,
+.adt-transcript-close {
+  color: #0f766e;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.adt-transcript-link:focus-visible,
+.adt-transcript-close:focus-visible {
+  outline: 3px solid var(--adt-focus);
+  outline-offset: 4px;
+  border-radius: 0.2rem;
+}
+
+.adt-page-card {
+  width: min(100%, 61rem);
+  margin: 0 auto;
+  overflow: hidden;
+  border: 1px solid rgba(36, 72, 61, 0.2);
+  background: var(--adt-paper);
+  box-shadow: 0 18px 44px rgba(24, 55, 47, 0.2);
+}
+
+.adt-facsimile-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #fff;
+}
+
+.adt-accessible-transcript {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.adt-accessible-transcript:target {
+  position: relative;
+  width: min(100%, 61rem);
+  height: auto;
+  padding: clamp(1rem, 3vw, 2.25rem);
+  margin: 1rem auto 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+  border: 2px solid rgba(15, 159, 143, 0.55);
+  border-radius: 1rem;
+  background: #fff;
+  box-shadow: 0 12px 28px rgba(24, 55, 47, 0.14);
+}
+
+.adt-accessible-transcript h2 {
+  margin: 0 0 0.35rem;
+  color: #115e59;
+  font-size: clamp(1.35rem, 3vw, 2rem);
+  line-height: 1.25;
+}
+
+.adt-accessible-transcript__intro {
+  margin: 0 0 1.25rem;
+  color: #475569;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.adt-transcript-segment {
+  display: block;
+  margin: 0 0 0.72rem;
+  font-size: clamp(1rem, 2.1vw, 1.18rem);
+  line-height: 1.65;
+}
+
+.adt-transcript-close {
+  display: inline-block;
+  margin-top: 1rem;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.adt-visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+@media (max-width: 640px) {
+  .adt-reader-main {
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  .adt-page-toolbar {
+    padding: 0 0.65rem;
+    font-size: 0.78rem;
+  }
+
+  .adt-page-card {
+    border-right: 0;
+    border-left: 0;
+    box-shadow: 0 8px 24px rgba(24, 55, 47, 0.16);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .adt-facsimile-shell {
+    transition: none;
+  }
+}
+
+@media print {
+  html,
+  body.adt-reader-shell {
+    background: #fff;
+  }
+
+  .adt-reader-main {
+    padding: 0;
+  }
+
+  .adt-page-toolbar,
+  .adt-accessible-transcript,
+  #interface-container,
+  #nav-container {
+    display: none !important;
+  }
+
+  .adt-page-card {
+    width: 100%;
+    border: 0;
+    box-shadow: none;
+  }
+}
