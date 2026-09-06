@@ -81,7 +81,7 @@
     });
 
     var pageKey = String(sourcePage).padStart(3, "0");
-    fetch("./content/word-boxes/pg" + pageKey + ".json?v=1")
+    fetch("./content/word-boxes/pg" + pageKey + ".json?v=2")
       .then(function (response) {
         if (!response.ok) throw new Error("Word box map unavailable");
         return response.json();
