@@ -138,5 +138,25 @@
   "pg001_cover_title": {
     "text": "English for Secondary Schools. Student’s Book Form One.",
     "filename": "pg001_cover_title_v2.mp3"
+  },
+  "pg005_credit_writers": {
+    "text": "Writers: Ms Neema B. Matingo, Ms Asia M. Akaro, Mr Francis J. Kibadu, Dr Moshi M. Kimizi and Ms Mercy G. Mandia.",
+    "filename": "pg005_credit_writers_v2.mp3"
+  },
+  "pg005_credit_editors": {
+    "text": "Editors: Dr Emmanuel P. Lema, Dr Julius J. Taji, Dr Ponsiano S. Kanijo, Mr Richard S. Mabala and Mr Justin A. Msuya.",
+    "filename": "pg005_credit_editors_v2.mp3"
+  },
+  "pg005_credit_designer": {
+    "text": "Designer: Mr Frank P. Maridadi.",
+    "filename": "pg005_credit_designer_v2.mp3"
+  },
+  "pg005_credit_illustrators": {
+    "text": "Illustrators: Mr Yohana P. Mwenda and Mr Gwakisa M. Ulimboka.",
+    "filename": "pg005_credit_illustrators_v2.mp3"
+  },
+  "pg005_credit_coordinator": {
+    "text": "Coordinator: Ms Neema B. Matingo.",
+    "filename": "pg005_credit_coordinator_v2.mp3"
   }
 }

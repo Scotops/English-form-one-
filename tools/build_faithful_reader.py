@@ -26,6 +26,39 @@ COVER_TITLE_COMPONENT_IDS = {
     "pg001_n0006",
 }
 
+ACKNOWLEDGEMENTS_CREDITS = (
+    (
+        "pg005_credit_writers",
+        "Writers: Ms Neema B. Matingo, Ms Asia M. Akaro, Mr Francis J. Kibadu, "
+        "Dr Moshi M. Kimizi and Ms Mercy G. Mandia.",
+    ),
+    (
+        "pg005_credit_editors",
+        "Editors: Dr Emmanuel P. Lema, Dr Julius J. Taji, Dr Ponsiano S. Kanijo, "
+        "Mr Richard S. Mabala and Mr Justin A. Msuya.",
+    ),
+    (
+        "pg005_credit_designer",
+        "Designer: Mr Frank P. Maridadi.",
+    ),
+    (
+        "pg005_credit_illustrators",
+        "Illustrators: Mr Yohana P. Mwenda and Mr Gwakisa M. Ulimboka.",
+    ),
+    (
+        "pg005_credit_coordinator",
+        "Coordinator: Ms Neema B. Matingo.",
+    ),
+)
+ACKNOWLEDGEMENTS_CREDIT_IDS = {text_id for text_id, _value in ACKNOWLEDGEMENTS_CREDITS}
+ACKNOWLEDGEMENTS_CREDIT_COMPONENT_IDS = {
+    "pg005_n0010", "pg005_n0012",
+    "pg005_n0015", "pg005_n0017",
+    "pg005_n0020", "pg005_n0022",
+    "pg005_n0025", "pg005_n0027",
+    "pg005_n0030", "pg005_n0032",
+}
+
 # The source table of contents prints bare page references.  Give those
 # references enough context for read-aloud without changing the facsimile.
 TOC_PAGE_NUMBER_SPEECH = {
@@ -223,9 +256,9 @@ def page_html(
   </main>
   <div class="relative z-50" id="interface-container"></div>
   <div class="relative z-50" id="nav-container"></div>
-  <script src="./assets/offline-preloader.js?v=5"></script>
+  <script src="./assets/offline-preloader.js?v=6"></script>
   <script src="./assets/scorm.js"></script>
-  <script src="./assets/facsimile-highlight.js?v=3"></script>
+  <script src="./assets/facsimile-highlight.js?v=4"></script>
   <script src="./assets/base.bundle.local.js"></script>
 </body>
 </html>
@@ -340,6 +373,17 @@ def main() -> None:
     audios[f"{COVER_TITLE_ID}_easy_read"] = cover_audio
     audio_jobs[COVER_TITLE_ID] = {"text": COVER_TITLE_TEXT, "filename": cover_audio}
 
+    # Pair each short acknowledgements credit label with its names.  Keeping
+    # labels such as "Editors" inside a substantial clip prevents the player
+    # from advancing past them during rapid segment transitions.
+    for text_id, value in ACKNOWLEDGEMENTS_CREDITS:
+        texts[text_id] = value
+        texts[f"{text_id}_easy_read"] = value
+        filename = f"{text_id}_v2.mp3"
+        audios[text_id] = filename
+        audios[f"{text_id}_easy_read"] = filename
+        audio_jobs[text_id] = {"text": value, "filename": filename}
+
     # Easy Read must not paraphrase or renumber contents entries.  Both modes
     # use the book's exact titles and the same standard audio clips so the
     # requested title -> description -> page-number order is deterministic.
@@ -407,17 +451,23 @@ def main() -> None:
         page_items = []
         if source_page == 1:
             page_items.append((COVER_TITLE_ID, COVER_TITLE_TEXT))
-        page_items.extend(
+        base_items = list(
             (text_id, value)
             for text_id, value in texts.items()
             if text_id.startswith(prefix)
             and not text_id.endswith("_easy_read")
             and text_id != COVER_TITLE_ID
             and text_id not in COVER_TITLE_COMPONENT_IDS
+            and text_id not in ACKNOWLEDGEMENTS_CREDIT_IDS
+            and text_id not in ACKNOWLEDGEMENTS_CREDIT_COMPONENT_IDS
             and text_id not in TOC_DUPLICATE_IMAGE_IDS
             and not is_prepress_text(value)
             and not is_running_decoration_text(source_page, value)
         )
+        for item in base_items:
+            page_items.append(item)
+            if source_page == 5 and item[0] == "pg005_n0006":
+                page_items.extend(ACKNOWLEDGEMENTS_CREDITS)
         section_id = f"pg{source_page:03d}_sec001"
         href = root / ("index.html" if source_page == 1 else f"{section_id}.html")
         href.write_text(

@@ -23,6 +23,20 @@ RUNNING_DECORATION_TEXT = {
 }
 COVER_TITLE_ID = "pg001_cover_title"
 COVER_TITLE_TEXT = "English for Secondary Schools. Student’s Book Form One."
+ACKNOWLEDGEMENTS_CREDIT_IDS = [
+    "pg005_credit_writers",
+    "pg005_credit_editors",
+    "pg005_credit_designer",
+    "pg005_credit_illustrators",
+    "pg005_credit_coordinator",
+]
+ACKNOWLEDGEMENTS_OLD_CREDIT_IDS = {
+    "pg005_n0010", "pg005_n0012",
+    "pg005_n0015", "pg005_n0017",
+    "pg005_n0020", "pg005_n0022",
+    "pg005_n0025", "pg005_n0027",
+    "pg005_n0030", "pg005_n0032",
+}
 TOC_READING_ORDER = {
     "pg003_sec001": [
         "pg003_n0002",
@@ -102,6 +116,7 @@ def main() -> int:
     bad_toc_reading_order: list[dict[str, object]] = []
     bad_toc_easy_read: list[dict[str, str]] = []
     bad_cover_opening: list[dict[str, object]] = []
+    bad_acknowledgements_credits: list[dict[str, object]] = []
 
     for index, entry in enumerate(manifest, start=1):
         section_id = entry["section_id"]
@@ -161,6 +176,17 @@ def main() -> int:
             if first_id != COVER_TITLE_ID or first_text != COVER_TITLE_TEXT:
                 bad_cover_opening.append(
                     {"href": entry["href"], "first_id": first_id, "first_text": first_text}
+                )
+        if section_id == "pg005_sec001":
+            credit_ids = [text_id for text_id in transcript_ids if text_id in ACKNOWLEDGEMENTS_CREDIT_IDS]
+            old_credit_ids = [text_id for text_id in transcript_ids if text_id in ACKNOWLEDGEMENTS_OLD_CREDIT_IDS]
+            if credit_ids != ACKNOWLEDGEMENTS_CREDIT_IDS or old_credit_ids:
+                bad_acknowledgements_credits.append(
+                    {
+                        "href": entry["href"],
+                        "credit_ids": credit_ids,
+                        "old_credit_ids": old_credit_ids,
+                    }
                 )
         expected_toc_order = TOC_READING_ORDER.get(section_id)
         if expected_toc_order is not None and transcript_ids != expected_toc_order:
@@ -228,6 +254,18 @@ def main() -> int:
                 "first_text": "Cover standard and Easy Read opening differ",
             }
         )
+    for text_id in ACKNOWLEDGEMENTS_CREDIT_IDS:
+        standard = texts.get(text_id, "")
+        easy = texts.get(f"{text_id}_easy_read", "")
+        if standard != easy or audios.get(text_id) != audios.get(f"{text_id}_easy_read"):
+            bad_acknowledgements_credits.append(
+                {"href": "pg005_sec001.html", "id": text_id, "standard": standard, "easy": easy}
+            )
+    editors_text = texts.get("pg005_credit_editors", "")
+    if not editors_text.startswith("Editors:"):
+        bad_acknowledgements_credits.append(
+            {"href": "pg005_sec001.html", "id": "pg005_credit_editors", "text": editors_text}
+        )
 
     source_page_numbers = sorted(ids_by_page)
     missing_source_pages = [
@@ -264,6 +302,7 @@ def main() -> int:
         "bad_toc_reading_order": bad_toc_reading_order,
         "bad_toc_easy_read": bad_toc_easy_read,
         "bad_cover_opening": bad_cover_opening,
+        "bad_acknowledgements_credits": bad_acknowledgements_credits,
         "floating_highlight_fallback_present": (
             "adt-reading-word" in (root / "assets/facsimile-highlight.js").read_text(encoding="utf-8")
             or "adt-reading-word" in (root / "content/book-fidelity.css").read_text(encoding="utf-8")
@@ -333,6 +372,7 @@ def main() -> int:
             "bad_toc_reading_order",
             "bad_toc_easy_read",
             "bad_cover_opening",
+            "bad_acknowledgements_credits",
             "floating_highlight_fallback_present",
         )
     )
