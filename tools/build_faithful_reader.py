@@ -124,7 +124,7 @@ def page_html(
   <meta name="page-section-id" content="{section_index}" />
   <meta name="printed-page-number" content="{html_lib.escape(label)}" />
   <link href="./content/tailwind_output.css" rel="stylesheet" />
-  <link href="./content/book-fidelity.css?v=2" rel="stylesheet" />
+  <link href="./content/book-fidelity.css?v=3" rel="stylesheet" />
   <link href="./assets/libs/fontawesome/css/all.min.css" rel="stylesheet" />
   <link href="./assets/fonts.css" rel="stylesheet" />
 </head>
@@ -132,18 +132,11 @@ def page_html(
   <main class="adt-reader-main" id="page-top">
     <h1 class="adt-visually-hidden">{html_lib.escape(TITLE)}, printed page {html_lib.escape(label)}</h1>
     <div id="content" class="adt-facsimile-shell opacity-0" data-adt-facsimile="true" data-source-pdf-page="{source_page}" data-printed-page="{html_lib.escape(label)}">
-      <div class="adt-page-toolbar" aria-label="Page information">
-        <span class="adt-printed-page">Printed page {html_lib.escape(label)}</span>
-        <a class="adt-transcript-link" href="#accessible-transcript">Accessible text transcript</a>
-      </div>
       <section class="adt-page-card" role="article" data-section-type="facsimile_page" data-section-id="{section_id}" aria-label="Printed page {html_lib.escape(label)}">
-        <img class="adt-facsimile-image" src="images/pages/pg{source_page:03d}_page.jpg" width="{width}" height="{height}" alt="Original textbook page {html_lib.escape(label)}. A complete accessible transcript is available on this page." />
+        <img class="adt-facsimile-image" src="images/pages/pg{source_page:03d}_page.jpg" width="{width}" height="{height}" alt="Original textbook page {html_lib.escape(label)}." />
       </section>
-      <section id="accessible-transcript" class="adt-accessible-transcript" tabindex="-1" aria-labelledby="transcript-heading">
-        <h2 id="transcript-heading">Accessible text transcript - page {html_lib.escape(label)}</h2>
-        <p class="adt-accessible-transcript__intro">Use the reader's read-aloud controls or select an individual segment below.</p>
+      <section id="accessible-transcript" class="adt-accessible-transcript" aria-label="Accessible text transcript for printed page {html_lib.escape(label)}">
 {transcript}
-        <a class="adt-transcript-close" href="#page-top">Return to the page image</a>
       </section>
     </div>
   </main>
@@ -151,6 +144,7 @@ def page_html(
   <div class="relative z-50" id="nav-container"></div>
   <script src="./assets/offline-preloader.js?v=4"></script>
   <script src="./assets/scorm.js"></script>
+  <script src="./assets/facsimile-highlight.js?v=1"></script>
   <script src="./assets/base.bundle.local.js"></script>
 </body>
 </html>

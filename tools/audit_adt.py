@@ -62,6 +62,9 @@ def main() -> int:
     bad_section_ids: list[dict[str, str]] = []
     ids_by_page: dict[int, list[str]] = defaultdict(list)
     all_ids: list[str] = []
+    missing_word_box_files: list[str] = []
+    missing_highlight_scripts: list[str] = []
+    visible_page_overlays: list[str] = []
 
     for index, entry in enumerate(manifest, start=1):
         section_id = entry["section_id"]
@@ -86,9 +89,19 @@ def main() -> int:
             bad_meta_indices.append(
                 {"href": entry["href"], "expected": index, "actual": index_meta[0] if index_meta else ""}
             )
+        if not tree.xpath("//script[contains(@src, 'facsimile-highlight.js')]"):
+            missing_highlight_scripts.append(entry["href"])
+        if tree.xpath(
+            "//*[contains(concat(' ', normalize-space(@class), ' '), ' adt-page-toolbar ')]"
+            " | //a[contains(concat(' ', normalize-space(@class), ' '), ' adt-transcript-link ')]"
+        ):
+            visible_page_overlays.append(entry["href"])
         page_ids = ordered_data_ids(href)
         all_ids.extend(page_ids)
         if source_page > 0:
+            word_box_path = root / "content/word-boxes" / f"pg{source_page:03d}.json"
+            if not word_box_path.is_file():
+                missing_word_box_files.append(word_box_path.relative_to(root).as_posix())
             for text_id in page_ids:
                 if text_id not in ids_by_page[source_page]:
                     ids_by_page[source_page].append(text_id)
@@ -126,6 +139,9 @@ def main() -> int:
         "duplicate_ids_across_manifest_pages": {
             key: count for key, count in Counter(all_ids).items() if count > 1
         },
+        "missing_word_box_files": missing_word_box_files,
+        "missing_highlight_scripts": missing_highlight_scripts,
+        "visible_page_overlays": visible_page_overlays,
     }
 
     if args.pdf:
@@ -180,6 +196,9 @@ def main() -> int:
             "audio_ids_missing_text",
             "missing_or_empty_audio_files",
             "missing_source_pages",
+            "missing_word_box_files",
+            "missing_highlight_scripts",
+            "visible_page_overlays",
         )
     )
     return 1 if errors else 0
