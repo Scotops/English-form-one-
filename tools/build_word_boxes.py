@@ -19,6 +19,26 @@ from pypdf import PdfReader
 WORD_RE = re.compile(r"[^\W_]+(?:[’'\-][^\W_]+)*", re.UNICODE)
 IMAGE_ID_RE = re.compile(r"_im\d", re.IGNORECASE)
 
+# Read-aloud expands each bare contents-page reference to "Page number ...".
+# Keep the highlight on the printed reference while that phrase is spoken.
+TOC_PAGE_NUMBER_TARGETS = {
+    "pg003_n0007": "v",
+    "pg003_n0011": "vi",
+    "pg003_n0016": "1",
+    "pg003_n0021": "9",
+    "pg003_n0026": "24",
+    "pg003_n0031": "40",
+    "pg003_n0036": "60",
+    "pg003_n0041": "85",
+    "pg003_n0046": "100",
+    "pg003_n0051": "123",
+    "pg004_n0005": "139",
+    "pg004_n0009": "158",
+    "pg004_n0012": "180",
+    "pg004_n0015": "181",
+    "pg004_n0019": "182",
+}
+
 
 @dataclass(frozen=True)
 class Token:
@@ -160,6 +180,22 @@ def map_page(
             boxes_by_token.setdefault(
                 (token.text_id, token.word_index), printed[block.b + offset].box
             )
+
+    # The contextual words added to contents-page references are not printed.
+    # Map the complete spoken phrase to the bare printed page reference so the
+    # yellow marker remains visible throughout the phrase.
+    for text_id, tokens in mappable_items:
+        target = TOC_PAGE_NUMBER_TARGETS.get(text_id)
+        if target is None:
+            continue
+        target_box = next(
+            (token.box for token in printed if token.normalized == normalize_word(target)),
+            None,
+        )
+        if target_box is None:
+            continue
+        for token in tokens:
+            boxes_by_token[(text_id, token.word_index)] = target_box
 
     result: dict[str, list[list[float] | None]] = {}
     eligible = 0

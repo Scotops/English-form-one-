@@ -18,6 +18,60 @@ TITLE = "English for Secondary Schools Student’s Book Form One"
 ROMAN_PAGES = ("i", "ii", "iii", "iv", "v", "vi")
 CHAPTER_OPENER_SOURCE_PAGES = {7, 15, 30, 46, 66, 91, 106, 129}
 
+# The source table of contents prints bare page references.  Give those
+# references enough context for read-aloud without changing the facsimile.
+TOC_PAGE_NUMBER_SPEECH = {
+    "pg003_n0007": "Page number Roman number five.",
+    "pg003_n0011": "Page number Roman number six.",
+    "pg003_n0016": "Page number 1.",
+    "pg003_n0021": "Page number 9.",
+    "pg003_n0026": "Page number 24.",
+    "pg003_n0031": "Page number 40.",
+    "pg003_n0036": "Page number 60.",
+    "pg003_n0041": "Page number 85.",
+    "pg003_n0046": "Page number 100.",
+    "pg003_n0051": "Page number 123.",
+    "pg004_n0005": "Page number 139.",
+    "pg004_n0009": "Page number 158.",
+    "pg004_n0012": "Page number 180.",
+    "pg004_n0015": "Page number 181.",
+    "pg004_n0019": "Page number 182.",
+}
+
+# These extracted image labels repeat the adjacent printed contents text.
+TOC_DUPLICATE_IMAGE_IDS = {
+    "pg003_im004",
+    "pg003_im005",
+    "pg003_im006",
+    "pg003_im007",
+    "pg003_im008",
+    "pg003_im009",
+    "pg003_im010",
+    "pg003_im011",
+    "pg003_im012",
+    "pg003_im013",
+    "pg003_im014",
+}
+
+TOC_TEXT_IDS = (
+    "pg003_n0002",
+    "pg003_n0006", "pg003_n0007",
+    "pg003_n0010", "pg003_n0011",
+    "pg003_n0014", "pg003_n0015", "pg003_n0016",
+    "pg003_n0019", "pg003_n0020", "pg003_n0021",
+    "pg003_n0024", "pg003_n0025", "pg003_n0026",
+    "pg003_n0029", "pg003_n0030", "pg003_n0031",
+    "pg003_n0034", "pg003_n0035", "pg003_n0036",
+    "pg003_n0039", "pg003_n0040", "pg003_n0041",
+    "pg003_n0044", "pg003_n0045", "pg003_n0046",
+    "pg003_n0049", "pg003_n0050", "pg003_n0051",
+    "pg004_n0003", "pg004_n0004", "pg004_n0005",
+    "pg004_n0007", "pg004_n0008", "pg004_n0009",
+    "pg004_n0011", "pg004_n0012",
+    "pg004_n0014", "pg004_n0015",
+    "pg004_n0017", "pg004_n0018", "pg004_n0019",
+)
+
 BIBLIOGRAPHY = [
     ("pg186_n0001", "Student’s Book Form One"),
     ("pg186_n0002", "English for Secondary Schools"),
@@ -71,13 +125,6 @@ ENHANCED_DESCRIPTIONS = {
 
 def printed_page(source_page: int) -> str:
     return ROMAN_PAGES[source_page - 1] if source_page <= 6 else str(source_page - 6)
-
-
-def spoken_page(source_page: int) -> str:
-    if source_page <= 6:
-        words = ("one", "two", "three", "four", "five", "six")
-        return f"Front matter page {words[source_page - 1]}, shown as Roman numeral {ROMAN_PAGES[source_page - 1]}."
-    return f"Printed book page {source_page - 6}."
 
 
 def is_prepress_text(value: str) -> bool:
@@ -155,13 +202,13 @@ def page_html(
 </head>
 <body class="adt-reader-shell">
   <main class="adt-reader-main" id="page-top">
-    <h1 class="adt-visually-hidden">{html_lib.escape(TITLE)}, printed page {html_lib.escape(label)}</h1>
+    <h1 class="adt-visually-hidden">{html_lib.escape(TITLE)}</h1>
     <div id="content" class="adt-facsimile-shell opacity-0" data-adt-facsimile="true" data-source-pdf-page="{source_page}" data-printed-page="{html_lib.escape(label)}">
-      <section class="{page_card_classes}" role="article" data-section-type="facsimile_page" data-section-id="{section_id}" aria-label="Printed page {html_lib.escape(label)}">
+      <section class="{page_card_classes}" role="article" data-section-type="facsimile_page" data-section-id="{section_id}" aria-label="Textbook page">
         <img class="adt-facsimile-image" src="images/pages/pg{source_page:03d}_page.jpg" width="{width}" height="{height}" alt="Original textbook page {html_lib.escape(label)}." />
         <span class="adt-printed-page-number" aria-hidden="true">{html_lib.escape(label)}</span>
       </section>
-      <section id="accessible-transcript" class="adt-accessible-transcript" aria-label="Accessible text transcript for printed page {html_lib.escape(label)}">
+      <section id="accessible-transcript" class="adt-accessible-transcript" aria-label="Accessible text transcript">
 {transcript}
       </section>
     </div>
@@ -258,15 +305,30 @@ def main() -> None:
         audios[f"{text_id}_easy_read"] = filename
         audio_jobs[text_id] = {"text": value, "filename": filename}
 
+    # Page numbers remain visible in the facsimile, but they are not standalone
+    # read-aloud items.  Their old mappings are removed so the reader never says
+    # "front matter page" or "printed book page" while reading page content.
     for source_page in range(1, pdf_page_count + 1):
         text_id = f"pg{source_page:03d}_page_number"
-        value = spoken_page(source_page)
+        texts.pop(text_id, None)
+        texts.pop(f"{text_id}_easy_read", None)
+        audios.pop(text_id, None)
+        audios.pop(f"{text_id}_easy_read", None)
+
+    for text_id, value in TOC_PAGE_NUMBER_SPEECH.items():
         texts[text_id] = value
         texts[f"{text_id}_easy_read"] = value
-        filename = f"{text_id}.mp3"
+        filename = f"{text_id}_toc_v2.mp3"
         audios[text_id] = filename
         audios[f"{text_id}_easy_read"] = filename
         audio_jobs[text_id] = {"text": value, "filename": filename}
+
+    # Easy Read must not paraphrase or renumber contents entries.  Both modes
+    # use the book's exact titles and the same standard audio clips so the
+    # requested title -> description -> page-number order is deterministic.
+    for text_id in TOC_TEXT_IDS:
+        texts[f"{text_id}_easy_read"] = texts[text_id]
+        audios[f"{text_id}_easy_read"] = audios[text_id]
 
     texts_path.write_text(json.dumps(texts, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
     audios_path.write_text(json.dumps(audios, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
@@ -325,14 +387,12 @@ def main() -> None:
 
     for source_page in range(1, pdf_page_count + 1):
         prefix = f"pg{source_page:03d}_"
-        page_label_id = f"pg{source_page:03d}_page_number"
-        page_items = [(page_label_id, texts[page_label_id])]
-        page_items.extend(
+        page_items = list(
             (text_id, value)
             for text_id, value in texts.items()
             if text_id.startswith(prefix)
-            and text_id != page_label_id
             and not text_id.endswith("_easy_read")
+            and text_id not in TOC_DUPLICATE_IMAGE_IDS
             and not is_prepress_text(value)
             and not is_running_decoration_text(source_page, value)
         )

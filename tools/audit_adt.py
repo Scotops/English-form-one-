@@ -21,6 +21,28 @@ RUNNING_DECORATION_TEXT = {
     "english for secondary schools",
     "student's book form one",
 }
+TOC_READING_ORDER = {
+    "pg003_sec001": [
+        "pg003_n0002",
+        "pg003_n0006", "pg003_n0007",
+        "pg003_n0010", "pg003_n0011",
+        "pg003_n0014", "pg003_n0015", "pg003_n0016",
+        "pg003_n0019", "pg003_n0020", "pg003_n0021",
+        "pg003_n0024", "pg003_n0025", "pg003_n0026",
+        "pg003_n0029", "pg003_n0030", "pg003_n0031",
+        "pg003_n0034", "pg003_n0035", "pg003_n0036",
+        "pg003_n0039", "pg003_n0040", "pg003_n0041",
+        "pg003_n0044", "pg003_n0045", "pg003_n0046",
+        "pg003_n0049", "pg003_n0050", "pg003_n0051",
+    ],
+    "pg004_sec001": [
+        "pg004_n0003", "pg004_n0004", "pg004_n0005",
+        "pg004_n0007", "pg004_n0008", "pg004_n0009",
+        "pg004_n0011", "pg004_n0012",
+        "pg004_n0014", "pg004_n0015",
+        "pg004_n0017", "pg004_n0018", "pg004_n0019",
+    ],
+}
 
 
 def ordered_data_ids(path: Path) -> list[str]:
@@ -74,6 +96,9 @@ def main() -> int:
     running_decoration_transcript_text: list[dict[str, str]] = []
     missing_visible_page_numbers: list[dict[str, str]] = []
     missing_decoration_masks: list[str] = []
+    generic_page_label_transcript_text: list[dict[str, str]] = []
+    bad_toc_reading_order: list[dict[str, object]] = []
+    bad_toc_easy_read: list[dict[str, str]] = []
 
     for index, entry in enumerate(manifest, start=1):
         section_id = entry["section_id"]
@@ -121,8 +146,24 @@ def main() -> int:
             " | //a[contains(concat(' ', normalize-space(@class), ' '), ' adt-transcript-link ')]"
         ):
             visible_page_overlays.append(entry["href"])
-        for segment in tree.xpath("//section[@id='accessible-transcript']//*[@data-id]"):
+        transcript_segments = tree.xpath("//section[@id='accessible-transcript']//*[@data-id]")
+        transcript_ids = [segment.get("data-id") or "" for segment in transcript_segments]
+        expected_toc_order = TOC_READING_ORDER.get(section_id)
+        if expected_toc_order is not None and transcript_ids != expected_toc_order:
+            bad_toc_reading_order.append(
+                {"href": entry["href"], "expected": expected_toc_order, "actual": transcript_ids}
+            )
+        for segment in transcript_segments:
             value = " ".join("".join(segment.itertext()).split())
+            normalized_value = value.lower()
+            if (
+                (segment.get("data-id") or "").endswith("_page_number")
+                or normalized_value.startswith("front matter page ")
+                or normalized_value.startswith("printed book page ")
+            ):
+                generic_page_label_transcript_text.append(
+                    {"href": entry["href"], "id": segment.get("data-id") or "", "text": value}
+                )
             if ".indd" in value.lower() or PREPRESS_TIMESTAMP_RE.fullmatch(value):
                 prepress_transcript_text.append(
                     {"href": entry["href"], "id": segment.get("data-id") or "", "text": value}
@@ -150,6 +191,18 @@ def main() -> int:
         for key, filename in audios.items()
         if not (audio_dir / filename).is_file() or (audio_dir / filename).stat().st_size == 0
     ]
+
+    for expected_ids in TOC_READING_ORDER.values():
+        for text_id in expected_ids:
+            easy_id = f"{text_id}_easy_read"
+            if texts.get(easy_id) != texts.get(text_id) or audios.get(easy_id) != audios.get(text_id):
+                bad_toc_easy_read.append(
+                    {
+                        "id": text_id,
+                        "standard_text": texts.get(text_id, ""),
+                        "easy_read_text": texts.get(easy_id, ""),
+                    }
+                )
 
     source_page_numbers = sorted(ids_by_page)
     missing_source_pages = [
@@ -182,6 +235,9 @@ def main() -> int:
         "running_decoration_transcript_text": running_decoration_transcript_text,
         "missing_visible_page_numbers": missing_visible_page_numbers,
         "missing_decoration_masks": missing_decoration_masks,
+        "generic_page_label_transcript_text": generic_page_label_transcript_text,
+        "bad_toc_reading_order": bad_toc_reading_order,
+        "bad_toc_easy_read": bad_toc_easy_read,
         "floating_highlight_fallback_present": (
             "adt-reading-word" in (root / "assets/facsimile-highlight.js").read_text(encoding="utf-8")
             or "adt-reading-word" in (root / "content/book-fidelity.css").read_text(encoding="utf-8")
@@ -247,6 +303,9 @@ def main() -> int:
             "running_decoration_transcript_text",
             "missing_visible_page_numbers",
             "missing_decoration_masks",
+            "generic_page_label_transcript_text",
+            "bad_toc_reading_order",
+            "bad_toc_easy_read",
             "floating_highlight_fallback_present",
         )
     )
