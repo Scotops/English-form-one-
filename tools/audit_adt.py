@@ -16,6 +16,7 @@ from pypdf import PdfReader
 
 PAGE_RE = re.compile(r"pg(\d{3})_sec\d{3}$")
 WORD_RE = re.compile(r"[a-z0-9]+(?:['’][a-z0-9]+)?", re.IGNORECASE)
+PREPRESS_TIMESTAMP_RE = re.compile(r"^\d{2}/\d{2}/\d{4}\s+\d{1,2}:\d{2}$")
 
 
 def ordered_data_ids(path: Path) -> list[str]:
@@ -65,6 +66,7 @@ def main() -> int:
     missing_word_box_files: list[str] = []
     missing_highlight_scripts: list[str] = []
     visible_page_overlays: list[str] = []
+    prepress_transcript_text: list[dict[str, str]] = []
 
     for index, entry in enumerate(manifest, start=1):
         section_id = entry["section_id"]
@@ -96,6 +98,12 @@ def main() -> int:
             " | //a[contains(concat(' ', normalize-space(@class), ' '), ' adt-transcript-link ')]"
         ):
             visible_page_overlays.append(entry["href"])
+        for segment in tree.xpath("//section[@id='accessible-transcript']//*[@data-id]"):
+            value = " ".join("".join(segment.itertext()).split())
+            if ".indd" in value.lower() or PREPRESS_TIMESTAMP_RE.fullmatch(value):
+                prepress_transcript_text.append(
+                    {"href": entry["href"], "id": segment.get("data-id") or "", "text": value}
+                )
         page_ids = ordered_data_ids(href)
         all_ids.extend(page_ids)
         if source_page > 0:
@@ -142,6 +150,11 @@ def main() -> int:
         "missing_word_box_files": missing_word_box_files,
         "missing_highlight_scripts": missing_highlight_scripts,
         "visible_page_overlays": visible_page_overlays,
+        "prepress_transcript_text": prepress_transcript_text,
+        "floating_highlight_fallback_present": (
+            "adt-reading-word" in (root / "assets/facsimile-highlight.js").read_text(encoding="utf-8")
+            or "adt-reading-word" in (root / "content/book-fidelity.css").read_text(encoding="utf-8")
+        ),
     }
 
     if args.pdf:
@@ -199,6 +212,8 @@ def main() -> int:
             "missing_word_box_files",
             "missing_highlight_scripts",
             "visible_page_overlays",
+            "prepress_transcript_text",
+            "floating_highlight_fallback_present",
         )
     )
     return 1 if errors else 0

@@ -79,6 +79,14 @@ def spoken_page(source_page: int) -> str:
     return f"Printed book page {source_page - 6}."
 
 
+def is_prepress_text(value: str) -> bool:
+    """Identify printer-only production marks outside the finished page."""
+    stripped = value.strip()
+    return ".indd" in stripped.lower() or bool(
+        re.fullmatch(r"\d{2}/\d{2}/\d{4}\s+\d{1,2}:\d{2}", stripped)
+    )
+
+
 def update_inline_json(root: Path) -> None:
     path = root / "assets/offline-preloader.js"
     source = path.read_text(encoding="utf-8")
@@ -124,7 +132,7 @@ def page_html(
   <meta name="page-section-id" content="{section_index}" />
   <meta name="printed-page-number" content="{html_lib.escape(label)}" />
   <link href="./content/tailwind_output.css" rel="stylesheet" />
-  <link href="./content/book-fidelity.css?v=3" rel="stylesheet" />
+  <link href="./content/book-fidelity.css?v=4" rel="stylesheet" />
   <link href="./assets/libs/fontawesome/css/all.min.css" rel="stylesheet" />
   <link href="./assets/fonts.css" rel="stylesheet" />
 </head>
@@ -144,7 +152,7 @@ def page_html(
   <div class="relative z-50" id="nav-container"></div>
   <script src="./assets/offline-preloader.js?v=4"></script>
   <script src="./assets/scorm.js"></script>
-  <script src="./assets/facsimile-highlight.js?v=1"></script>
+  <script src="./assets/facsimile-highlight.js?v=2"></script>
   <script src="./assets/base.bundle.local.js"></script>
 </body>
 </html>
@@ -307,6 +315,7 @@ def main() -> None:
             if text_id.startswith(prefix)
             and text_id != page_label_id
             and not text_id.endswith("_easy_read")
+            and not is_prepress_text(value)
         )
         section_id = f"pg{source_page:03d}_sec001"
         href = root / ("index.html" if source_page == 1 else f"{section_id}.html")

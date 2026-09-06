@@ -13,6 +13,7 @@ from pathlib import Path
 
 import pdfplumber
 from lxml import html
+from pypdf import PdfReader
 
 
 WORD_RE = re.compile(r"[^\W_]+(?:[’'\-][^\W_]+)*", re.UNICODE)
@@ -58,7 +59,13 @@ def transcript_items(page_path: Path) -> list[tuple[str, list[Token]]]:
     return items
 
 
-def pdf_tokens(page: pdfplumber.page.Page) -> list[PdfToken]:
+def pdf_tokens(
+    page: pdfplumber.page.Page,
+    crop: tuple[float, float, float, float],
+) -> list[PdfToken]:
+    crop_left, crop_top, crop_width, crop_height = crop
+    crop_right = crop_left + crop_width
+    crop_bottom = crop_top + crop_height
     output: list[PdfToken] = []
     for word in page.extract_words(use_text_flow=True, keep_blank_chars=False):
         source = str(word.get("text", ""))
@@ -77,6 +84,13 @@ def pdf_tokens(page: pdfplumber.page.Page) -> list[PdfToken]:
                 continue
             token_x0 = x0 + width * (match.start() / span)
             token_x1 = x0 + width * (match.end() / span)
+            token_center_x = (token_x0 + token_x1) / 2
+            token_center_y = (top + bottom) / 2
+            if not (
+                crop_left <= token_center_x <= crop_right
+                and crop_top <= token_center_y <= crop_bottom
+            ):
+                continue
             output.append(
                 PdfToken(
                     text=match.group(0),
@@ -102,9 +116,9 @@ def exact_starts(needle: list[str], haystack: list[str]) -> list[int]:
 def map_page(
     items: list[tuple[str, list[Token]]],
     printed: list[PdfToken],
-    page_width: float,
-    page_height: float,
+    crop: tuple[float, float, float, float],
 ) -> tuple[dict[str, list[list[float] | None]], int, int]:
+    crop_left, crop_top, crop_width, crop_height = crop
     boxes_by_token: dict[tuple[str, int], tuple[float, float, float, float]] = {}
     pdf_words = [token.normalized for token in printed]
     cursor = 0
@@ -160,10 +174,10 @@ def map_page(
                 continue
             x, y, width, height = box
             word_boxes[token.word_index] = [
-                round(x / page_width, 6),
-                round(y / page_height, 6),
-                round(width / page_width, 6),
-                round(height / page_height, 6),
+                round((x - crop_left) / crop_width, 6),
+                round((y - crop_top) / crop_height, 6),
+                round(width / crop_width, 6),
+                round(height / crop_height, 6),
             ]
             matched += 1
         if any(box is not None for box in word_boxes):
@@ -184,20 +198,29 @@ def main() -> None:
 
     matched_total = 0
     eligible_total = 0
+    box_reader = PdfReader(args.pdf)
     with pdfplumber.open(args.pdf) as pdf:
         if len(pdf.pages) != len(manifest):
             raise ValueError(
                 f"PDF has {len(pdf.pages)} pages but the reader has {len(manifest)} pages"
             )
-        for source_page, (pdf_page, entry) in enumerate(zip(pdf.pages, manifest), start=1):
+        for source_page, (pdf_page, box_page, entry) in enumerate(
+            zip(pdf.pages, box_reader.pages, manifest), start=1
+        ):
+            media = box_page.mediabox
+            trim = box_page.trimbox
+            crop_left = float(trim.left) - float(media.left)
+            crop_top = float(media.top) - float(trim.top)
+            crop_width = float(trim.right) - float(trim.left)
+            crop_height = float(trim.top) - float(trim.bottom)
+            crop = (crop_left, crop_top, crop_width, crop_height)
             page_path = root / entry["href"]
             items = transcript_items(page_path)
-            printed = pdf_tokens(pdf_page)
+            printed = pdf_tokens(pdf_page, crop)
             mappings, matched, eligible = map_page(
                 items,
                 printed,
-                float(pdf_page.width),
-                float(pdf_page.height),
+                crop,
             )
             matched_total += matched
             eligible_total += eligible
@@ -205,8 +228,8 @@ def main() -> None:
                 "source_page": source_page,
                 "printed_page": entry.get("page_number"),
                 "page": {
-                    "width": round(float(pdf_page.width), 4),
-                    "height": round(float(pdf_page.height), 4),
+                    "width": round(crop_width, 4),
+                    "height": round(crop_height, 4),
                 },
                 "items": mappings,
             }

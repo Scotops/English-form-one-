@@ -65,13 +65,12 @@ body.adt-reader-shell {
   z-index: 3;
   display: block;
   pointer-events: none;
-  border-radius: 0.18rem;
-  background: rgba(255, 225, 0, 0.7);
-  box-shadow: 0 0 0 1px rgba(167, 123, 0, 0.18);
+  border-radius: 0.04rem;
+  background: rgba(255, 225, 0, 0.78);
+  box-shadow: none;
   mix-blend-mode: multiply;
   opacity: 0;
-  transform: scale(1.04, 1.18);
-  transform-origin: center;
+  transform: none;
   transition:
     left 70ms linear,
     top 70ms linear,
@@ -82,28 +81,6 @@ body.adt-reader-shell {
 
 .adt-page-word-highlight.is-visible {
   opacity: 1;
-}
-
-.adt-reading-word {
-  position: sticky;
-  z-index: 4;
-  bottom: 6.75rem;
-  display: none;
-  width: fit-content;
-  max-width: calc(100% - 1rem);
-  margin: 0.6rem auto 0;
-  padding: 0.3rem 0.62rem;
-  border: 2px solid #b08900;
-  border-radius: 0.35rem;
-  background: #ffe54d;
-  color: #111827;
-  font: 700 clamp(1rem, 2.5vw, 1.35rem)/1.25 Arial, Helvetica, sans-serif;
-  overflow-wrap: anywhere;
-  box-shadow: 0 4px 12px rgba(74, 55, 0, 0.2);
-}
-
-.adt-reading-word.is-visible {
-  display: block;
 }
 
 .adt-accessible-transcript {
@@ -172,7 +149,6 @@ body.adt-reader-shell {
 
   .adt-accessible-transcript,
   .adt-page-word-highlight,
-  .adt-reading-word,
   #interface-container,
   #nav-container {
     display: none !important;

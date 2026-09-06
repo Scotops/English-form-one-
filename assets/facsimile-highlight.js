@@ -25,18 +25,11 @@
     marker.setAttribute("aria-hidden", "true");
     pageCard.appendChild(marker);
 
-    var caption = document.createElement("div");
-    caption.className = "adt-reading-word";
-    caption.setAttribute("aria-hidden", "true");
-    content.appendChild(caption);
-
     var wordMap = null;
     var syncQueued = false;
 
     function hideIndicators() {
       marker.classList.remove("is-visible");
-      caption.classList.remove("is-visible");
-      caption.textContent = "";
     }
 
     function showBox(box) {
@@ -45,14 +38,6 @@
       marker.style.width = (box[2] * 100).toFixed(4) + "%";
       marker.style.height = (box[3] * 100).toFixed(4) + "%";
       marker.classList.add("is-visible");
-      caption.classList.remove("is-visible");
-      caption.textContent = "";
-    }
-
-    function showCaption(word) {
-      marker.classList.remove("is-visible");
-      caption.textContent = word;
-      caption.classList.add("is-visible");
     }
 
     function syncHighlight() {
@@ -77,7 +62,7 @@
       if (Array.isArray(box) && box.length === 4) {
         showBox(box);
       } else {
-        showCaption((activeWord.textContent || "").trim());
+        hideIndicators();
       }
     }
 
