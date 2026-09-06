@@ -21,6 +21,8 @@ RUNNING_DECORATION_TEXT = {
     "english for secondary schools",
     "student's book form one",
 }
+COVER_TITLE_ID = "pg001_cover_title"
+COVER_TITLE_TEXT = "English for Secondary Schools. Student’s Book Form One."
 TOC_READING_ORDER = {
     "pg003_sec001": [
         "pg003_n0002",
@@ -99,6 +101,7 @@ def main() -> int:
     generic_page_label_transcript_text: list[dict[str, str]] = []
     bad_toc_reading_order: list[dict[str, object]] = []
     bad_toc_easy_read: list[dict[str, str]] = []
+    bad_cover_opening: list[dict[str, object]] = []
 
     for index, entry in enumerate(manifest, start=1):
         section_id = entry["section_id"]
@@ -148,6 +151,17 @@ def main() -> int:
             visible_page_overlays.append(entry["href"])
         transcript_segments = tree.xpath("//section[@id='accessible-transcript']//*[@data-id]")
         transcript_ids = [segment.get("data-id") or "" for segment in transcript_segments]
+        if section_id == "pg001_sec001":
+            first_id = transcript_ids[0] if transcript_ids else ""
+            first_text = (
+                " ".join("".join(transcript_segments[0].itertext()).split())
+                if transcript_segments
+                else ""
+            )
+            if first_id != COVER_TITLE_ID or first_text != COVER_TITLE_TEXT:
+                bad_cover_opening.append(
+                    {"href": entry["href"], "first_id": first_id, "first_text": first_text}
+                )
         expected_toc_order = TOC_READING_ORDER.get(section_id)
         if expected_toc_order is not None and transcript_ids != expected_toc_order:
             bad_toc_reading_order.append(
@@ -203,6 +217,17 @@ def main() -> int:
                         "easy_read_text": texts.get(easy_id, ""),
                     }
                 )
+    if (
+        texts.get(f"{COVER_TITLE_ID}_easy_read") != COVER_TITLE_TEXT
+        or audios.get(f"{COVER_TITLE_ID}_easy_read") != audios.get(COVER_TITLE_ID)
+    ):
+        bad_cover_opening.append(
+            {
+                "href": "index.html",
+                "first_id": COVER_TITLE_ID,
+                "first_text": "Cover standard and Easy Read opening differ",
+            }
+        )
 
     source_page_numbers = sorted(ids_by_page)
     missing_source_pages = [
@@ -238,6 +263,7 @@ def main() -> int:
         "generic_page_label_transcript_text": generic_page_label_transcript_text,
         "bad_toc_reading_order": bad_toc_reading_order,
         "bad_toc_easy_read": bad_toc_easy_read,
+        "bad_cover_opening": bad_cover_opening,
         "floating_highlight_fallback_present": (
             "adt-reading-word" in (root / "assets/facsimile-highlight.js").read_text(encoding="utf-8")
             or "adt-reading-word" in (root / "content/book-fidelity.css").read_text(encoding="utf-8")
@@ -306,6 +332,7 @@ def main() -> int:
             "generic_page_label_transcript_text",
             "bad_toc_reading_order",
             "bad_toc_easy_read",
+            "bad_cover_opening",
             "floating_highlight_fallback_present",
         )
     )

@@ -17,6 +17,14 @@ from pypdf import PdfReader
 TITLE = "English for Secondary Schools Student’s Book Form One"
 ROMAN_PAGES = ("i", "ii", "iii", "iv", "v", "vi")
 CHAPTER_OPENER_SOURCE_PAGES = {7, 15, 30, 46, 66, 91, 106, 129}
+COVER_TITLE_ID = "pg001_cover_title"
+COVER_TITLE_TEXT = "English for Secondary Schools. Student’s Book Form One."
+COVER_TITLE_COMPONENT_IDS = {
+    "pg001_n0002",
+    "pg001_n0003",
+    "pg001_n0005",
+    "pg001_n0006",
+}
 
 # The source table of contents prints bare page references.  Give those
 # references enough context for read-aloud without changing the facsimile.
@@ -323,6 +331,15 @@ def main() -> None:
         audios[f"{text_id}_easy_read"] = filename
         audio_jobs[text_id] = {"text": value, "filename": filename}
 
+    # A single continuous opening clip prevents the very short standalone word
+    # "English" from being skipped while the player initializes on the cover.
+    texts[COVER_TITLE_ID] = COVER_TITLE_TEXT
+    texts[f"{COVER_TITLE_ID}_easy_read"] = COVER_TITLE_TEXT
+    cover_audio = f"{COVER_TITLE_ID}_v2.mp3"
+    audios[COVER_TITLE_ID] = cover_audio
+    audios[f"{COVER_TITLE_ID}_easy_read"] = cover_audio
+    audio_jobs[COVER_TITLE_ID] = {"text": COVER_TITLE_TEXT, "filename": cover_audio}
+
     # Easy Read must not paraphrase or renumber contents entries.  Both modes
     # use the book's exact titles and the same standard audio clips so the
     # requested title -> description -> page-number order is deterministic.
@@ -387,11 +404,16 @@ def main() -> None:
 
     for source_page in range(1, pdf_page_count + 1):
         prefix = f"pg{source_page:03d}_"
-        page_items = list(
+        page_items = []
+        if source_page == 1:
+            page_items.append((COVER_TITLE_ID, COVER_TITLE_TEXT))
+        page_items.extend(
             (text_id, value)
             for text_id, value in texts.items()
             if text_id.startswith(prefix)
             and not text_id.endswith("_easy_read")
+            and text_id != COVER_TITLE_ID
+            and text_id not in COVER_TITLE_COMPONENT_IDS
             and text_id not in TOC_DUPLICATE_IMAGE_IDS
             and not is_prepress_text(value)
             and not is_running_decoration_text(source_page, value)
