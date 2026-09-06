@@ -136,8 +136,14 @@
     "filename": "pg004_n0019_toc_v2.mp3"
   },
   "pg001_cover_title": {
-    "text": "English for Secondary Schools. Student’s Book Form One.",
-    "filename": "pg001_cover_title_v2.mp3"
+    "text": "English for Secondary Schools. Student’s Book. Form One.",
+    "filename": "pg001_cover_title_v3.mp3",
+    "source_filenames": [
+      "pg001_n0002.mp3",
+      "pg001_n0003.mp3",
+      "pg001_n0005.mp3",
+      "pg001_n0006.mp3"
+    ]
   },
   "pg005_credit_writers": {
     "text": "Writers: Ms Neema B. Matingo, Ms Asia M. Akaro, Mr Francis J. Kibadu, Dr Moshi M. Kimizi and Ms Mercy G. Mandia.",

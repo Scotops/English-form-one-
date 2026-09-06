@@ -22,7 +22,7 @@ RUNNING_DECORATION_TEXT = {
     "student's book form one",
 }
 COVER_TITLE_ID = "pg001_cover_title"
-COVER_TITLE_TEXT = "English for Secondary Schools. Student’s Book Form One."
+COVER_TITLE_TEXT = "English for Secondary Schools. Student’s Book. Form One."
 ACKNOWLEDGEMENTS_CREDIT_IDS = [
     "pg005_credit_writers",
     "pg005_credit_editors",

@@ -18,7 +18,13 @@ TITLE = "English for Secondary Schools Student’s Book Form One"
 ROMAN_PAGES = ("i", "ii", "iii", "iv", "v", "vi")
 CHAPTER_OPENER_SOURCE_PAGES = {7, 15, 30, 46, 66, 91, 106, 129}
 COVER_TITLE_ID = "pg001_cover_title"
-COVER_TITLE_TEXT = "English for Secondary Schools. Student’s Book Form One."
+COVER_TITLE_TEXT = "English for Secondary Schools. Student’s Book. Form One."
+COVER_TITLE_SOURCE_AUDIO = [
+    "pg001_n0002.mp3",
+    "pg001_n0003.mp3",
+    "pg001_n0005.mp3",
+    "pg001_n0006.mp3",
+]
 COVER_TITLE_COMPONENT_IDS = {
     "pg001_n0002",
     "pg001_n0003",
@@ -220,6 +226,8 @@ def page_html(
         page_card_classes += " adt-page-chapter-opener"
     with Image.open(image_path) as image:
         width, height = image.size
+    # Only the cover needs a new preload revision for its corrected audio.
+    preloader_version = 7 if source_page == 1 else 6
     transcript = "\n".join(
         "        <span class=\"adt-transcript-segment\" data-id=\"{}\">{}</span>".format(
             html_lib.escape(text_id, quote=True), html_lib.escape(value)
@@ -256,7 +264,7 @@ def page_html(
   </main>
   <div class="relative z-50" id="interface-container"></div>
   <div class="relative z-50" id="nav-container"></div>
-  <script src="./assets/offline-preloader.js?v=6"></script>
+  <script src="./assets/offline-preloader.js?v={preloader_version}"></script>
   <script src="./assets/scorm.js"></script>
   <script src="./assets/facsimile-highlight.js?v=4"></script>
   <script src="./assets/base.bundle.local.js"></script>
@@ -368,10 +376,17 @@ def main() -> None:
     # "English" from being skipped while the player initializes on the cover.
     texts[COVER_TITLE_ID] = COVER_TITLE_TEXT
     texts[f"{COVER_TITLE_ID}_easy_read"] = COVER_TITLE_TEXT
-    cover_audio = f"{COVER_TITLE_ID}_v2.mp3"
+    cover_audio = f"{COVER_TITLE_ID}_v3.mp3"
     audios[COVER_TITLE_ID] = cover_audio
     audios[f"{COVER_TITLE_ID}_easy_read"] = cover_audio
-    audio_jobs[COVER_TITLE_ID] = {"text": COVER_TITLE_TEXT, "filename": cover_audio}
+    # Assemble the cover title from its original narration segments.  This
+    # preserves the same male narrator used throughout the source ADT while a
+    # single continuous file prevents the short opening word from being lost.
+    audio_jobs[COVER_TITLE_ID] = {
+        "text": COVER_TITLE_TEXT,
+        "filename": cover_audio,
+        "source_filenames": COVER_TITLE_SOURCE_AUDIO,
+    }
 
     # Pair each short acknowledgements credit label with its names.  Keeping
     # labels such as "Editors" inside a substantial clip prevents the player
