@@ -17,6 +17,10 @@ from pypdf import PdfReader
 PAGE_RE = re.compile(r"pg(\d{3})_sec\d{3}$")
 WORD_RE = re.compile(r"[a-z0-9]+(?:['’][a-z0-9]+)?", re.IGNORECASE)
 PREPRESS_TIMESTAMP_RE = re.compile(r"^\d{2}/\d{2}/\d{4}\s+\d{1,2}:\d{2}$")
+RUNNING_DECORATION_TEXT = {
+    "english for secondary schools",
+    "student's book form one",
+}
 
 
 def ordered_data_ids(path: Path) -> list[str]:
@@ -67,6 +71,9 @@ def main() -> int:
     missing_highlight_scripts: list[str] = []
     visible_page_overlays: list[str] = []
     prepress_transcript_text: list[dict[str, str]] = []
+    running_decoration_transcript_text: list[dict[str, str]] = []
+    missing_visible_page_numbers: list[dict[str, str]] = []
+    missing_decoration_masks: list[str] = []
 
     for index, entry in enumerate(manifest, start=1):
         section_id = entry["section_id"]
@@ -91,6 +98,22 @@ def main() -> int:
             bad_meta_indices.append(
                 {"href": entry["href"], "expected": index, "actual": index_meta[0] if index_meta else ""}
             )
+        visible_page_numbers = tree.xpath(
+            "//*[contains(concat(' ', normalize-space(@class), ' '), ' adt-printed-page-number ')]/text()"
+        )
+        expected_page_number = str(entry.get("page_number", ""))
+        if len(visible_page_numbers) != 1 or visible_page_numbers[0].strip() != expected_page_number:
+            missing_visible_page_numbers.append(
+                {
+                    "href": entry["href"],
+                    "expected": expected_page_number,
+                    "actual": visible_page_numbers[0].strip() if visible_page_numbers else "",
+                }
+            )
+        if source_page > 1 and not tree.xpath(
+            "//*[contains(concat(' ', normalize-space(@class), ' '), ' adt-page-has-running-decoration ')]"
+        ):
+            missing_decoration_masks.append(entry["href"])
         if not tree.xpath("//script[contains(@src, 'facsimile-highlight.js')]"):
             missing_highlight_scripts.append(entry["href"])
         if tree.xpath(
@@ -102,6 +125,11 @@ def main() -> int:
             value = " ".join("".join(segment.itertext()).split())
             if ".indd" in value.lower() or PREPRESS_TIMESTAMP_RE.fullmatch(value):
                 prepress_transcript_text.append(
+                    {"href": entry["href"], "id": segment.get("data-id") or "", "text": value}
+                )
+            normalized = " ".join(value.replace("’", "'").split()).lower()
+            if source_page > 1 and normalized in RUNNING_DECORATION_TEXT:
+                running_decoration_transcript_text.append(
                     {"href": entry["href"], "id": segment.get("data-id") or "", "text": value}
                 )
         page_ids = ordered_data_ids(href)
@@ -151,6 +179,9 @@ def main() -> int:
         "missing_highlight_scripts": missing_highlight_scripts,
         "visible_page_overlays": visible_page_overlays,
         "prepress_transcript_text": prepress_transcript_text,
+        "running_decoration_transcript_text": running_decoration_transcript_text,
+        "missing_visible_page_numbers": missing_visible_page_numbers,
+        "missing_decoration_masks": missing_decoration_masks,
         "floating_highlight_fallback_present": (
             "adt-reading-word" in (root / "assets/facsimile-highlight.js").read_text(encoding="utf-8")
             or "adt-reading-word" in (root / "content/book-fidelity.css").read_text(encoding="utf-8")
@@ -213,6 +244,9 @@ def main() -> int:
             "missing_highlight_scripts",
             "visible_page_overlays",
             "prepress_transcript_text",
+            "running_decoration_transcript_text",
+            "missing_visible_page_numbers",
+            "missing_decoration_masks",
             "floating_highlight_fallback_present",
         )
     )

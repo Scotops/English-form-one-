@@ -16,6 +16,7 @@ from pypdf import PdfReader
 
 TITLE = "English for Secondary Schools Student’s Book Form One"
 ROMAN_PAGES = ("i", "ii", "iii", "iv", "v", "vi")
+CHAPTER_OPENER_SOURCE_PAGES = {7, 15, 30, 46, 66, 91, 106, 129}
 
 BIBLIOGRAPHY = [
     ("pg186_n0001", "Student’s Book Form One"),
@@ -87,6 +88,17 @@ def is_prepress_text(value: str) -> bool:
     )
 
 
+def is_running_decoration_text(source_page: int, value: str) -> bool:
+    """Exclude the repeated footer labels hidden with the decorative bands."""
+    if source_page == 1:
+        return False
+    normalized = " ".join(value.replace("’", "'").split()).lower()
+    return normalized in {
+        "english for secondary schools",
+        "student's book form one",
+    }
+
+
 def update_inline_json(root: Path) -> None:
     path = root / "assets/offline-preloader.js"
     source = path.read_text(encoding="utf-8")
@@ -113,6 +125,11 @@ def page_html(
 ) -> str:
     section_id = f"pg{source_page:03d}_sec001"
     label = printed_page(source_page)
+    page_card_classes = "adt-page-card"
+    if source_page > 1:
+        page_card_classes += " adt-page-has-running-decoration"
+    if source_page in CHAPTER_OPENER_SOURCE_PAGES:
+        page_card_classes += " adt-page-chapter-opener"
     with Image.open(image_path) as image:
         width, height = image.size
     transcript = "\n".join(
@@ -132,7 +149,7 @@ def page_html(
   <meta name="page-section-id" content="{section_index}" />
   <meta name="printed-page-number" content="{html_lib.escape(label)}" />
   <link href="./content/tailwind_output.css" rel="stylesheet" />
-  <link href="./content/book-fidelity.css?v=4" rel="stylesheet" />
+  <link href="./content/book-fidelity.css?v=5" rel="stylesheet" />
   <link href="./assets/libs/fontawesome/css/all.min.css" rel="stylesheet" />
   <link href="./assets/fonts.css" rel="stylesheet" />
 </head>
@@ -140,8 +157,9 @@ def page_html(
   <main class="adt-reader-main" id="page-top">
     <h1 class="adt-visually-hidden">{html_lib.escape(TITLE)}, printed page {html_lib.escape(label)}</h1>
     <div id="content" class="adt-facsimile-shell opacity-0" data-adt-facsimile="true" data-source-pdf-page="{source_page}" data-printed-page="{html_lib.escape(label)}">
-      <section class="adt-page-card" role="article" data-section-type="facsimile_page" data-section-id="{section_id}" aria-label="Printed page {html_lib.escape(label)}">
+      <section class="{page_card_classes}" role="article" data-section-type="facsimile_page" data-section-id="{section_id}" aria-label="Printed page {html_lib.escape(label)}">
         <img class="adt-facsimile-image" src="images/pages/pg{source_page:03d}_page.jpg" width="{width}" height="{height}" alt="Original textbook page {html_lib.escape(label)}." />
+        <span class="adt-printed-page-number" aria-hidden="true">{html_lib.escape(label)}</span>
       </section>
       <section id="accessible-transcript" class="adt-accessible-transcript" aria-label="Accessible text transcript for printed page {html_lib.escape(label)}">
 {transcript}
@@ -316,6 +334,7 @@ def main() -> None:
             and text_id != page_label_id
             and not text_id.endswith("_easy_read")
             and not is_prepress_text(value)
+            and not is_running_decoration_text(source_page, value)
         )
         section_id = f"pg{source_page:03d}_sec001"
         href = root / ("index.html" if source_page == 1 else f"{section_id}.html")
