@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "source_pdf_pages": 192,
+  "canonical_html_pages": 192,
+  "one_to_one_pages": 192,
+  "static_audit": {
+    "errors": 0,
+    "warnings": 12,
+    "report": "tmp/adt-book-builder/final-static-approved/adt-audit.json"
+  },
+  "browser_render_audit": {
+    "desktop_and_mobile_views": 384,
+    "errors": 0,
+    "warnings": 304,
+    "report": "tmp/adt-book-builder/final-render-current/render-audit.json"
+  },
+  "resolved_text_fidelity": {
+    "unresolved_errors": 0,
+    "report": "tmp/adt-book-builder/final-resolved-fidelity-approved/resolved-fidelity-contract.json"
+  },
+  "narration_review": {
+    "canonical_page_ids": 5882,
+    "approved_entries": 11514,
+    "failures": 0,
+    "report": "tmp/adt-book-builder/narration/narration-plan-final-reviewed-current.json"
+  },
+  "reader_interaction_test": {
+    "checks": 15,
+    "failures": 0,
+    "script": "tools/test_reader_runtime.mjs"
+  },
+  "visual_review": {
+    "compared_pages": 192,
+    "approved_pages": 192,
+    "errors": 0,
+    "warnings": 11,
+    "exact_layout_verified": true,
+    "report": "tmp/adt-book-builder/final-visual-approved/book-fidelity-report.json",
+    "decisions": "quality/visual-review-decisions.json"
+  }
+}

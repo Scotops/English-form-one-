@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "report": "tmp/adt-book-builder/final-static-approved/adt-audit.json",
+  "accepted": [
+    {
+      "count": 4,
+      "codes": ["missing-h1", "missing-language", "missing-main", "missing-title"],
+      "file": "content/navigation/nav.html",
+      "reason": "This file is an injected navigation fragment, not a standalone book page. Its host document supplies the html language, title, main landmark, and h1."
+    },
+    {
+      "count": 8,
+      "codes": ["small-image-source"],
+      "reason": "The reviewed sources are intentionally shallow text strips or small activity icons extracted at their printed dimensions; they render clearly and carry accessible descriptions."
+    }
+  ]
+}

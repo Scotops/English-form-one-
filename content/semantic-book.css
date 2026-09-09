@@ -1,0 +1,365 @@
+:root {
+  --adt-page-width: 1024px;
+  --adt-page-height: 1409px;
+  --adt-teal: #22a994;
+  --adt-orange: #f15a24;
+  --adt-paper: #fff;
+  --adt-ink: #272321;
+}
+
+* { box-sizing: border-box; }
+
+body.adt-semantic-reader {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--adt-ink);
+  background: #edf4f1;
+}
+
+.adt-reader-main {
+  min-height: 100vh;
+  padding: 20px 16px 180px;
+}
+
+.adt-book-page {
+  position: relative;
+  width: min(var(--adt-page-width), calc(100vw - 32px));
+  height: min(var(--adt-page-height), calc((100vw - 32px) / var(--source-page-ratio)));
+  margin: 0 auto;
+  overflow: hidden;
+  background: var(--adt-paper);
+  box-shadow: 0 18px 46px rgba(32, 65, 56, 0.18);
+}
+
+.adt-page-canvas {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  padding: 24px 38px 52px;
+  background: var(--adt-paper);
+}
+
+.adt-page-flow {
+  width: 100%;
+  transform-origin: top left;
+}
+
+.adt-source-fragment {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  background: #fff;
+}
+
+.adt-source-fragment > section {
+  width: 100%;
+  max-width: none;
+  min-height: 0 !important;
+}
+
+.adt-source-fragment img {
+  max-width: 100%;
+  height: auto;
+}
+
+.adt-layout-template-hidden {
+  display: none !important;
+}
+
+/* Text-bearing question artwork is rebuilt as live HTML so every displayed
+   word can participate in read-aloud and the yellow word highlight. */
+.adt-live-question-panel {
+  position: relative !important;
+  min-height: 150px;
+  margin: 8px auto 14px;
+  padding: 66px 38px 28px !important;
+  overflow: visible !important;
+  border-top: 3px solid #39a935;
+  border-radius: 0 0 38px 0 !important;
+  background: #cfe9c2 !important;
+  box-shadow: 10px 12px 9px rgba(0, 0, 0, 0.24) !important;
+}
+
+.adt-live-question-panel > h3 {
+  position: absolute !important;
+  inset: -28px auto auto -1px !important;
+  min-width: 205px;
+  margin: 0 !important;
+  padding: 10px 28px !important;
+  border-radius: 0 0 30px 0 !important;
+  color: #fff !important;
+  background: #39a935 !important;
+  font: 700 31px/1.05 Georgia, "Times New Roman", serif !important;
+  box-shadow: 5px 6px 0 rgba(57, 169, 53, 0.25) !important;
+}
+
+.adt-live-question-copy {
+  margin: 0 !important;
+  color: #1d1d1d;
+  font: 400 22px/1.52 Georgia, "Times New Roman", serif;
+  white-space: pre-line;
+}
+
+.adt-heading-icon-crop {
+  width: 82px !important;
+  height: 82px !important;
+  object-fit: cover !important;
+  object-position: left center !important;
+  clip-path: circle(40px at 40px 41px);
+}
+
+.adt-heading-icon-crop + h3.sr-only {
+  display: block !important;
+  position: absolute !important;
+  left: 74px !important;
+  top: 20px !important;
+  width: auto !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 8px 24px !important;
+  overflow: visible !important;
+  clip: auto !important;
+  clip-path: none !important;
+  transform: none !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+  border-radius: 0 22px 22px 0;
+  color: #fff;
+  background: #c80b16;
+  font: 700 22px/1.1 Georgia, "Times New Roman", serif;
+}
+
+.adt-source-fragment table {
+  border-collapse: collapse;
+}
+
+/* Printed page 6 uses a compact row of browser/search-engine marks. The
+   extracted assets have very different intrinsic sizes, so normalize their
+   printed heights instead of letting the raster dimensions drive layout. */
+#content[data-source-page="12"] img[data-id="pg012_im001"],
+#content[data-source-page="12"] img[data-id="pg012_im002"],
+#content[data-source-page="12"] img[data-id="pg012_im004"] {
+  width: auto !important;
+  height: 112px !important;
+}
+#content[data-source-page="12"] img[data-id="pg012_im003"] {
+  width: auto !important;
+  height: 68px !important;
+}
+
+/* On printed page 31 the source conversion retained both the raster question
+   panel and its semantic reconstruction. Use the semantic version so words can
+   receive the yellow read-aloud highlight, and retain only the exercise icon
+   beside the live HTML heading. */
+#content[data-source-page="37"] [data-fragment-source="pg037_sec001.html"]
+  div:has(> img[data-source-id="pg037_im003_crop_v1"]) > h3 {
+  position: relative !important;
+  left: auto !important;
+  top: auto !important;
+  display: inline-block;
+  margin: 0 0 0 38px;
+}
+#content[data-source-page="37"] [data-fragment-source="pg037_sec001.html"]
+  div:has(> img[data-source-id="pg037_im003_crop_v1"]) + div {
+  margin-top: -10px !important;
+  padding-top: 52px !important;
+}
+#content[data-source-page="37"] [data-fragment-source="pg037_sec001.html"] [class~="mt-40"],
+#content[data-source-page="37"] [data-fragment-source="pg037_sec001.html"] [class~="mt-10"] {
+  display: none !important;
+}
+#content[data-source-page="37"] [data-fragment-source="pg037_sec001.html"] [class~="mb-16"] {
+  margin-bottom: 20px !important;
+}
+
+/* Printed page 116 arrived as five semantic fragments. The first question
+   image duplicates the complete live question block that follows. */
+#content[data-source-page="122"] [data-fragment-source="pg122_sec001.html"] {
+  display: none !important;
+}
+#content[data-source-page="122"] img[data-id="pg122_im004_seg001_v1_crop_v1"] {
+  display: none !important;
+}
+#content[data-source-page="122"] [data-fragment-source="pg122_sec004.html"]
+  div:has(> img[data-source-id="pg122_im005_seg001_v1"]) {
+  min-height: 52px;
+  border-radius: 8px 8px 0 0;
+  background: #f6a313;
+}
+#content[data-source-page="122"] [data-fragment-source="pg122_sec004.html"]
+  div:has(> img[data-source-id="pg122_im005_seg001_v1"]) > h3 {
+  position: static !important;
+  display: inline-block;
+  margin: 9px 0 0 38px;
+  color: #fff;
+  font-size: 24px;
+}
+#content[data-source-page="122"] img[data-id="pg122_im005_seg002_v1"] {
+  display: none !important;
+}
+#content[data-source-page="122"] [data-fragment-source="pg122_sec004.html"]
+  div:has(> img[data-id="pg122_im005_seg002_v1"]) {
+  min-height: 112px;
+  border: 2px solid #f6a313;
+  background: #f8d9e8;
+}
+#content[data-source-page="122"] [data-id="pg122_n0021"] {
+  position: static !important;
+  transform: none !important;
+  padding: 36px 28px 18px;
+  font-size: 22px !important;
+}
+
+.adt-generated-bibliography {
+  padding: 54px 72px !important;
+  font: 22px/1.55 Georgia, "Times New Roman", serif;
+}
+.adt-generated-bibliography h2 {
+  margin: 0 0 28px;
+  color: #249d59;
+  font-size: 38px;
+  text-align: center;
+}
+.adt-bibliography-list { margin: 0; padding-left: 30px; }
+.adt-bibliography-list li { margin: 0 0 15px; padding-left: 8px; }
+
+.adt-source-fragment :focus-visible,
+.adt-exercise-workspace :focus-visible {
+  outline: 3px solid #1d70b8;
+  outline-offset: 3px;
+}
+
+.adt-printed-page-number {
+  position: absolute;
+  z-index: 30;
+  left: 50%;
+  bottom: 14px;
+  min-width: 2.4em;
+  transform: translateX(-50%);
+  color: #191919;
+  background: rgba(255, 255, 255, 0.94);
+  font: 600 18px/1.2 Georgia, "Times New Roman", serif;
+  text-align: center;
+}
+
+.adt-visually-hidden,
+.adt-narration-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.adt-exercise-workspace {
+  width: min(720px, calc(100vw - 32px));
+  margin: 18px auto 0;
+  border: 1px solid #9bbeb5;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 10px 24px rgba(32, 65, 56, 0.12);
+  font: 16px/1.45 system-ui, sans-serif;
+}
+
+.adt-exercise-workspace[data-activity-count="0"] { display: none; }
+
+.adt-workspace-toggle {
+  width: 100%;
+  padding: 13px 18px;
+  border: 0;
+  border-radius: 14px;
+  color: #fff;
+  background: #087f70;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.adt-workspace-panel { padding: 18px; }
+.adt-workspace-panel label { display: block; margin: 8px 0 5px; font-weight: 700; }
+.adt-workspace-panel select,
+.adt-workspace-panel textarea {
+  width: 100%;
+  border: 1px solid #718e87;
+  border-radius: 8px;
+  padding: 10px;
+  color: #111;
+  background: #fff;
+  font: inherit;
+}
+.adt-workspace-panel textarea { min-height: 150px; resize: vertical; }
+.adt-workspace-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+.adt-workspace-actions button {
+  min-height: 44px;
+  padding: 9px 15px;
+  border: 1px solid #087f70;
+  border-radius: 8px;
+  background: #f3fffb;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+.adt-workspace-status { min-height: 1.5em; margin: 10px 0 0; color: #265f55; }
+
+@media (max-width: 767px) {
+  html,
+  body.adt-semantic-reader {
+    max-width: 100%;
+    overflow-x: clip;
+  }
+  .adt-reader-main { padding: 8px 8px 170px; }
+  .adt-book-page {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    overflow-x: clip;
+    overflow-y: visible;
+    box-shadow: none;
+  }
+  .adt-page-canvas {
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+    padding: 10px 10px 38px;
+  }
+  .adt-page-flow { width: 100% !important; height: auto !important; transform: none !important; }
+  .adt-source-fragment { margin-bottom: 12px !important; }
+  .adt-source-fragment *,
+  .adt-source-fragment *::before,
+  .adt-source-fragment *::after {
+    min-width: 0;
+    max-width: 100%;
+  }
+  .adt-source-fragment table {
+    width: 100%;
+    table-layout: auto;
+  }
+  .adt-source-fragment th,
+  .adt-source-fragment td,
+  .adt-source-fragment p,
+  .adt-source-fragment span,
+  .adt-source-fragment div {
+    overflow-wrap: anywhere;
+  }
+  .adt-source-fragment .overflow-x-auto { overflow-x: auto; }
+  .adt-printed-page-number { bottom: 9px; font-size: 15px; }
+  .adt-exercise-workspace { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
+}
+
+@media print {
+  body.adt-semantic-reader { background: #fff; }
+  .adt-reader-main { padding: 0; }
+  .adt-book-page { width: 100%; height: auto; box-shadow: none; }
+  .adt-exercise-workspace, #interface-container, #nav-container { display: none !important; }
+}

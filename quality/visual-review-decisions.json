@@ -1,0 +1,965 @@
+{
+  "schema_version": 1,
+  "pages": {
+    "1": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "2": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "3": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "4": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "5": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "6": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "7": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Close-up source/HTML comparison reviewed. The threshold difference is caused by semantic text reflow and the user-requested omission of the running decorative band and production marks; all instructional text, figures, sequence, and the printed folio remain."
+    },
+    "8": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "9": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "10": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "11": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "12": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "13": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Close-up source/HTML comparison reviewed. The threshold difference is caused by semantic text reflow and the user-requested omission of the running decorative band and production marks; all instructional text, figures, sequence, and the printed folio remain."
+    },
+    "14": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "15": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "16": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "17": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "18": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "19": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "20": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "21": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "22": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "23": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "24": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "25": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "26": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "27": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "28": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "29": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "30": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "31": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "32": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "33": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "34": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "35": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "36": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "37": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "38": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "39": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "40": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "41": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "42": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "43": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "44": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "45": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "46": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "47": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "48": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "49": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "50": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "51": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "52": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "53": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "54": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "55": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "56": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "57": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "58": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "59": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "60": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Close-up source/HTML comparison reviewed. The threshold difference is caused by semantic text reflow and the user-requested omission of the running decorative band and production marks; all instructional text, figures, sequence, and the printed folio remain."
+    },
+    "61": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "62": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "63": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "64": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "65": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "66": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "67": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "68": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "69": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "70": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "71": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "72": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "73": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "74": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "75": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "76": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "77": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "78": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "79": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "80": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "81": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "82": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "83": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "84": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "85": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "86": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "87": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "88": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "89": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "90": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "91": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Close-up source/HTML comparison reviewed. The threshold difference is caused by semantic text reflow and the user-requested omission of the running decorative band and production marks; all instructional text, figures, sequence, and the printed folio remain."
+    },
+    "92": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "93": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "94": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "95": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Close-up source/HTML comparison reviewed. The threshold difference is caused by semantic text reflow and the user-requested omission of the running decorative band and production marks; all instructional text, figures, sequence, and the printed folio remain."
+    },
+    "96": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "97": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "98": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "99": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "100": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "101": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "102": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "103": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "104": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "105": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "106": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "107": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "108": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "109": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "110": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "111": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "112": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "113": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "114": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "115": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "116": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "117": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "118": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "119": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "120": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Close-up source/HTML comparison reviewed. The threshold difference is caused by semantic text reflow and the user-requested omission of the running decorative band and production marks; all instructional text, figures, sequence, and the printed folio remain."
+    },
+    "121": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "122": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "123": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "124": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "125": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "126": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "127": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Close-up source/HTML comparison reviewed. The threshold difference is caused by semantic text reflow and the user-requested omission of the running decorative band and production marks; all instructional text, figures, sequence, and the printed folio remain."
+    },
+    "128": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "129": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "130": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "131": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "132": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "133": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "134": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "135": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "136": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "137": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "138": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Close-up source/HTML comparison reviewed. The threshold difference is caused by semantic text reflow and the user-requested omission of the running decorative band and production marks; all instructional text, figures, sequence, and the printed folio remain."
+    },
+    "139": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "140": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "141": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "142": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "143": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "144": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Close-up source/HTML comparison reviewed. The threshold difference is caused by semantic text reflow and the user-requested omission of the running decorative band and production marks; all instructional text, figures, sequence, and the printed folio remain."
+    },
+    "145": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "146": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "147": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "148": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "149": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "150": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "151": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Close-up source/HTML comparison reviewed. The threshold difference is caused by semantic text reflow and the user-requested omission of the running decorative band and production marks; all instructional text, figures, sequence, and the printed folio remain."
+    },
+    "152": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "153": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "154": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "155": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "156": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "157": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "158": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "159": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "160": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "161": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "162": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "163": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "164": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "165": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "166": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "167": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Close-up source/HTML comparison reviewed. The threshold difference is caused by semantic text reflow and the user-requested omission of the running decorative band and production marks; all instructional text, figures, sequence, and the printed folio remain."
+    },
+    "168": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "169": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "170": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "171": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "172": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "173": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "174": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "175": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "176": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "177": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "178": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "179": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "180": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "181": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "182": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "183": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "184": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "185": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "186": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "187": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "188": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "189": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "190": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "191": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    },
+    "192": {
+      "status": "approved",
+      "reviewer": "Codex visual inspection",
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+    }
+  }
+}

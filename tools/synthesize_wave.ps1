@@ -14,7 +14,7 @@ New-Item -ItemType Directory -Force -Path $OutputDirectory | Out-Null
 
 $synthesizer = New-Object System.Speech.Synthesis.SpeechSynthesizer
 $availableVoices = @($synthesizer.GetInstalledVoices() | ForEach-Object { $_.VoiceInfo.Name })
-$preferredVoices = @('Microsoft Zira Desktop', 'Microsoft Zira', 'Microsoft David Desktop', 'Microsoft David')
+$preferredVoices = @('Microsoft David Desktop', 'Microsoft David', 'Microsoft Zira Desktop', 'Microsoft Zira')
 $voice = $preferredVoices | Where-Object { $availableVoices -contains $_ } | Select-Object -First 1
 if (-not $voice) {
     $voice = $availableVoices | Select-Object -First 1
@@ -35,9 +35,15 @@ $format = New-Object System.Speech.AudioFormat.SpeechAudioFormatInfo(
 try {
     foreach ($property in $jobProperties) {
         $textId = $property.Name
+        $speechText = if ($property.Value -is [string]) {
+            [string]$property.Value
+        }
+        else {
+            [string]$property.Value.text
+        }
         $destination = Join-Path $OutputDirectory ($textId + '.wav')
         $synthesizer.SetOutputToWaveFile($destination, $format)
-        $synthesizer.Speak([string]$property.Value.text)
+        $synthesizer.Speak($speechText)
         $synthesizer.SetOutputToNull()
     }
 }
