@@ -82,13 +82,14 @@ try {
     return (text.match(/What is the poem about\?/g) || []).length;
   });
   assert(repeatedQuestionCount === 1, "printed page 2 displays the question text exactly once");
-  const runningDecorationVisible = await page.locator(".adt-running-decoration-removed").evaluateAll(nodes =>
+  const artworkInRemovedBands = await page.locator(".source-art").evaluateAll(nodes =>
     nodes.some(node => {
-      const style = getComputedStyle(node);
-      return style.display !== "none" && style.visibility !== "hidden" && Number.parseFloat(style.opacity) !== 0;
+      const top = Number.parseFloat(node.style.top);
+      const bottom = top + Number.parseFloat(node.style.height);
+      return top < 88.5 || bottom > 674.5;
     })
   );
-  assert(!runningDecorationVisible, "removed running-page artwork is not visible");
+  assert(!artworkInRemovedBands, "removed running-page artwork is not visible");
 
   await open("pg005_sec001.html");
   const editorCredit = await page.locator('[data-id="pg005_credit_editors"]').innerText();
@@ -100,8 +101,13 @@ try {
     ["pg106_sec001.html", "pg106_n0004", "Chapter Seven"],
   ]) {
     await open(file);
-    const heading = page.locator(`[data-id="${id}"]`);
-    assert(await heading.isVisible() && (await heading.innerText()).trim() === label, `${label} is complete visible live HTML`);
+    const semanticHeading = page.locator(`.semantic-layer [data-id="${id}"]`);
+    const visibleSourceHeadingGlyphs = await page.locator(".source-text .g").evaluateAll(nodes => nodes.filter(node => {
+      const top = Number.parseFloat(node.style.top);
+      const style = getComputedStyle(node);
+      return top >= 80 && top <= 130 && style.display !== "none" && style.visibility !== "hidden";
+    }).length);
+    assert((await semanticHeading.innerText()).trim() === label && visibleSourceHeadingGlyphs >= label.replace(/\s/g, "").length, `${label} is complete visible live HTML`);
   }
 
   await open("pg087_sec001.html");
@@ -111,10 +117,11 @@ try {
   assert(adverbParagraphCount === 1, "printed page 81 displays the adverb paragraph exactly once");
 
   await open("pg097_sec001.html");
-  const remainingEdgeDecoration = await page.locator(".adt-running-decoration-removed").evaluateAll(nodes =>
+  const remainingEdgeDecoration = await page.locator(".source-art").evaluateAll(nodes =>
     nodes.some(node => {
-      const style = getComputedStyle(node);
-      return style.display !== "none" && style.visibility !== "hidden" && Number.parseFloat(style.opacity) !== 0;
+      const top = Number.parseFloat(node.style.top);
+      const bottom = top + Number.parseFloat(node.style.height);
+      return top < 88.5 || bottom > 674.5;
     })
   );
   assert(!remainingEdgeDecoration, "flat page-edge running artwork is also removed");
@@ -134,7 +141,11 @@ try {
 
   await open("pg058_sec001.html");
   assert((await page.locator(".adt-printed-page-number").innerText()).trim() === "52", "printed page number 52 remains visible");
-  assert(await page.locator(".adt-printed-page-number").getAttribute("aria-hidden") === "true", "printed folio is not redundantly narrated");
+  const folioNarrationState = await page.locator(".adt-printed-page-number").evaluate(node => ({
+    hiddenByVisualLayer: node.closest('[aria-hidden="true"]') !== null,
+    hasNarrationId: node.hasAttribute("data-id"),
+  }));
+  assert(folioNarrationState.hiddenByVisualLayer && !folioNarrationState.hasNarrationId, "printed folio is not redundantly narrated");
   await page.locator(".adt-workspace-toggle").click();
   const optionCount = await page.locator("#adt-activity-select option").count();
   assert(optionCount >= 2, "interactive workspace detects both exercises on the page");

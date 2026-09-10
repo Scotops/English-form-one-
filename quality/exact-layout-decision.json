@@ -1,16 +1,18 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "exact_layout_verified": true,
   "source_pdf_pages": 192,
   "canonical_html_pages": 192,
   "approved_visual_pages": 192,
+  "architecture": "Live absolute-positioned HTML glyphs plus bounded regional graphics-only assets; no complete PDF-page screenshot is used.",
   "decision": "Approved after inspection of all 192 source/HTML comparison sheets at the canonical source-page aspect ratio.",
   "authorized_exceptions": [
     "The repeating green/orange running header and footer decoration is removed on every page as requested.",
     "InDesign filenames, timestamps, crop marks, and duplicate folio text are removed.",
-    "The printed folio remains visibly centered on every page and is aria-hidden to avoid duplicate narration.",
-    "Text-bearing artwork is replaced by or paired with live semantic HTML where required for complete read-aloud and yellow word highlighting."
+    "The printed folio remains visibly centered on every page and is excluded from ordinary narration.",
+    "The table of contents narrates page labels in the requested order, including Roman numerals.",
+    "A separate structured semantic layer supplies complete narration, image descriptions, responsive reading, and interactive exercise access."
   ],
-  "visual_report": "tmp/adt-book-builder/release2-visual-approved/book-fidelity-report.json",
+  "visual_report": "tmp/adt-book-builder/exact-compare-approved/book-fidelity-report.json",
   "review_decisions": "quality/visual-review-decisions.json"
 }

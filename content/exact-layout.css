@@ -1,0 +1,356 @@
+/* Fixed source page: 557.906 × 767.669 PDF points. */
+html,
+body {
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  overflow-x: hidden;
+  color: #111;
+  background: #e5e7eb;
+}
+
+main {
+  min-height: 100vh;
+  padding: 20px 0 104px;
+}
+
+#content.exact-page {
+  position: relative;
+  width: var(--page-width);
+  height: var(--page-height);
+  margin: 0 auto;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 12px 35px rgb(15 23 42 / 22%);
+  isolation: isolate;
+  transform-origin: top center;
+}
+
+.canonical-page,
+.pdf-visual,
+.background-images,
+.source-text {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.background-images {
+  z-index: 1;
+}
+
+.source-art {
+  position: absolute;
+  z-index: 1;
+  max-width: none;
+  object-fit: contain;
+}
+
+.source-text {
+  z-index: 3;
+}
+
+.g {
+  position: absolute;
+  display: block;
+  padding: 0;
+  margin: 0;
+  line-height: 1;
+  white-space: pre;
+  transform-origin: 0 0;
+}
+
+.adt-printed-page-number {
+  position: absolute;
+  z-index: 5;
+  bottom: 10px;
+  left: 50%;
+  min-width: 2.2em;
+  padding: 1px 4px;
+  color: #111;
+  background: rgb(255 255 255 / 94%);
+  font: 700 10px/1.15 "Times New Roman", Times, serif;
+  text-align: center;
+  transform: translateX(-50%);
+}
+
+.adt-tts-source-word-highlight {
+  position: absolute;
+  z-index: 8;
+  display: none;
+  pointer-events: none;
+  border: 1px solid rgb(202 138 4 / 70%);
+  border-radius: 2px;
+  background: rgb(253 224 71 / 74%);
+  box-shadow: 0 0 0 1px rgb(255 255 255 / 30%);
+  mix-blend-mode: multiply;
+  transform: translate(-1px, -1px);
+  transition: left 80ms linear, top 80ms linear, width 80ms linear, height 80ms linear;
+}
+
+.adt-tts-source-word-highlight.is-active {
+  display: block;
+}
+
+.semantic-layer {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.adt-page-title {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Legacy regional layout templates duplicate live text and are not content images. */
+.adt-layout-template-hidden {
+  display: none !important;
+}
+
+.adt-visually-hidden,
+.adt-narration-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+#interface-container,
+#nav-container {
+  position: relative;
+  z-index: 60;
+}
+
+.adt-exercise-workspace {
+  width: min(720px, calc(100vw - 32px));
+  margin: 18px auto 0;
+  border: 1px solid #9bbeb5;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 10px 24px rgb(32 65 56 / 12%);
+  font: 16px/1.45 system-ui, sans-serif;
+}
+
+.adt-exercise-workspace[data-activity-count="0"] {
+  display: none;
+}
+
+.adt-workspace-toggle {
+  width: 100%;
+  padding: 13px 18px;
+  border: 0;
+  border-radius: 14px;
+  color: #fff;
+  background: #087f70;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.adt-workspace-panel {
+  padding: 18px;
+}
+
+.adt-workspace-panel label {
+  display: block;
+  margin: 8px 0 5px;
+  font-weight: 700;
+}
+
+.adt-workspace-panel select,
+.adt-workspace-panel textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #718e87;
+  border-radius: 8px;
+  color: #111;
+  background: #fff;
+  font: inherit;
+}
+
+.adt-workspace-panel textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.adt-workspace-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.adt-workspace-actions button {
+  min-height: 44px;
+  padding: 9px 15px;
+  border: 1px solid #087f70;
+  border-radius: 8px;
+  background: #f3fffb;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.adt-workspace-status {
+  min-height: 1.5em;
+  margin: 10px 0 0;
+  color: #265f55;
+}
+
+.adt-exercise-workspace :focus-visible,
+.semantic-layer :focus-visible {
+  outline: 3px solid #1d70b8;
+  outline-offset: 3px;
+}
+
+@media (max-width: 700px) {
+  body {
+    max-width: 100%;
+    overflow-x: clip;
+    background: #fff;
+  }
+
+  main {
+    padding: 0 0 96px;
+  }
+
+  #content.exact-page {
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+    overflow: visible;
+    box-shadow: none;
+    transform: none !important;
+  }
+
+  .canonical-page {
+    position: relative;
+    width: auto;
+    height: auto;
+  }
+
+  .pdf-visual {
+    display: none;
+  }
+
+  .semantic-layer {
+    position: static !important;
+    display: block !important;
+    width: auto !important;
+    height: auto !important;
+    padding: 1rem !important;
+    margin: 0 !important;
+    overflow: visible !important;
+    clip: auto !important;
+    white-space: normal !important;
+  }
+
+  .semantic-layer .adt-source-fragment,
+  .semantic-layer section {
+    position: relative !important;
+    width: 100% !important;
+    max-width: none !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    margin: 0 0 1.25rem !important;
+    overflow: visible !important;
+    background: #fff;
+  }
+
+  .semantic-layer .absolute {
+    position: static !important;
+    inset: auto !important;
+    transform: none !important;
+  }
+
+  .semantic-layer img {
+    display: block;
+    max-width: 100% !important;
+    height: auto !important;
+    margin: 0.75rem auto;
+    object-fit: contain !important;
+  }
+
+  .semantic-layer table {
+    display: table;
+    width: 100% !important;
+    table-layout: fixed;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+
+  .semantic-layer th,
+  .semantic-layer td {
+    min-width: 0;
+    padding: 0.45rem;
+    border: 1px solid #64748b;
+    vertical-align: top;
+    overflow-wrap: anywhere;
+  }
+
+  .semantic-layer p,
+  .semantic-layer li,
+  .semantic-layer div,
+  .semantic-layer span {
+    overflow-wrap: anywhere;
+  }
+
+  .semantic-layer h1,
+  .semantic-layer h2,
+  .semantic-layer h3 {
+    line-height: 1.25;
+  }
+
+  .adt-tts-source-word-highlight {
+    display: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .adt-tts-source-word-highlight {
+    transition: none;
+  }
+}
+
+@media print {
+  body,
+  main {
+    padding: 0;
+    background: #fff;
+  }
+
+  #content.exact-page {
+    box-shadow: none;
+    page-break-after: always;
+  }
+
+  .adt-exercise-workspace,
+  #interface-container,
+  #nav-container {
+    display: none !important;
+  }
+}

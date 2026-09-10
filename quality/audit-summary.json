@@ -1,28 +1,32 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "source_pdf_pages": 192,
   "canonical_html_pages": 192,
   "one_to_one_pages": 192,
   "static_audit": {
     "errors": 0,
     "warnings": 7,
-    "report": "tmp/adt-book-builder/release2-static/adt-audit.json"
+    "report": "tmp/adt-book-builder/final-static/adt-audit.json"
   },
   "browser_render_audit": {
     "desktop_and_mobile_views": 384,
     "errors": 0,
-    "warnings": 344,
-    "report": "tmp/adt-book-builder/release2-merged/render-audit.json"
+    "warnings": 1019,
+    "report": "tmp/adt-book-builder/final-render-audit.json",
+    "warning_policy": "Expected hidden/clipped semantic duplicates behind the fixed desktop visual layer; no resource, overflow, or distortion errors remain."
   },
   "resolved_text_fidelity": {
     "unresolved_errors": 0,
-    "report": "tmp/adt-book-builder/release2-resolved/resolved-fidelity-contract.json"
+    "report": "tmp/adt-book-builder/exact-resolved-v2/resolved-fidelity-contract.json"
   },
   "narration_review": {
     "canonical_page_ids": 5835,
     "approved_entries": 11450,
+    "replacement_audio_jobs": 164,
+    "replacement_audio_missing": 0,
     "failures": 0,
-    "report": "tmp/adt-book-builder/release2-narration/reviewed.json"
+    "voice": "Microsoft David Desktop",
+    "report": "tmp/adt-book-builder/exact-narration/reviewed.json"
   },
   "reader_interaction_test": {
     "checks": 22,
@@ -33,9 +37,16 @@
     "compared_pages": 192,
     "approved_pages": 192,
     "errors": 0,
-    "warnings": 14,
+    "warnings": 0,
     "exact_layout_verified": true,
-    "report": "tmp/adt-book-builder/release2-visual-approved/book-fidelity-report.json",
+    "report": "tmp/adt-book-builder/exact-compare-approved/book-fidelity-report.json",
     "decisions": "quality/visual-review-decisions.json"
+  },
+  "no_page_screenshot_audit": {
+    "live_source_glyphs": 216498,
+    "regional_art_assets": 448,
+    "largest_regional_asset_page_fraction": 0.276098,
+    "full_page_image_references": 0,
+    "passed": true
   }
 }
