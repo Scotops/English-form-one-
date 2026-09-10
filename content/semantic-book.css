@@ -69,6 +69,26 @@ body.adt-semantic-reader {
   display: none !important;
 }
 
+.adt-layout-template-spacer {
+  visibility: hidden !important;
+}
+
+.adt-running-decoration-removed {
+  overflow: hidden;
+  visibility: hidden;
+}
+
+/* Some source panels contain the same words twice: once inside artwork and
+   once as semantic overlay text.  The raster is hidden by the spacer class;
+   this shell recreates the non-text visual treatment behind the live words. */
+.adt-semantic-question-shell {
+  overflow: hidden;
+  border-top: 3px solid #39a935;
+  border-radius: 0 0 38px 0 !important;
+  background: #cfe9c2 !important;
+  box-shadow: 10px 12px 9px rgba(0, 0, 0, 0.24) !important;
+}
+
 /* Text-bearing question artwork is rebuilt as live HTML so every displayed
    word can participate in read-aloud and the yellow word highlight. */
 .adt-live-question-panel {
@@ -109,6 +129,98 @@ body.adt-semantic-reader {
   object-fit: cover !important;
   object-position: left center !important;
   clip-path: circle(40px at 40px 41px);
+}
+
+.adt-heading-strip {
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  object-fit: contain !important;
+  clip-path: none !important;
+}
+
+[data-fragment-source="pg087_sec001.html"] h3.adt-narration-only + p {
+  margin-top: 1rem !important;
+}
+
+.adt-chapter-heading {
+  margin: 0 0 1.5rem !important;
+  padding: 1.25rem 1.5rem !important;
+  border-radius: 1.25rem !important;
+  background: linear-gradient(135deg, #18b6aa 0%, #0e9f9a 100%) !important;
+  box-shadow: 0 10px 22px rgba(13, 148, 136, 0.2) !important;
+}
+
+.adt-chapter-kicker {
+  display: inline-block !important;
+  margin: 0 0 0.75rem !important;
+  padding: 0.35rem 1rem !important;
+  border: 3px solid #f59e0b !important;
+  border-radius: 999px !important;
+  background: #fff4d8 !important;
+  color: #ea580c !important;
+  font: 700 clamp(1.4rem, 4vw, 3rem)/1 Georgia, "Times New Roman", serif !important;
+}
+
+.adt-chapter-title {
+  max-width: 42rem !important;
+  color: #fff !important;
+  font: 700 clamp(1.3rem, 3.2vw, 2.4rem)/1.12 Georgia, "Times New Roman", serif !important;
+}
+
+.adt-think-panel {
+  margin: 0 !important;
+  padding: 1.25rem 1.5rem !important;
+  border: 4px solid #fb923c !important;
+  border-radius: 1.5rem !important;
+  background: #fff !important;
+}
+
+.adt-activity-heading {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.75rem !important;
+  margin: 0 0 0.75rem !important;
+  padding: 0.7rem 1rem !important;
+  border-radius: 0.75rem !important;
+  background: linear-gradient(90deg, #ef4444, #f59e0b) !important;
+  color: #fff !important;
+}
+
+.adt-panel-label {
+  margin: 0 !important;
+  color: inherit !important;
+  font: 700 1.35rem/1.2 Georgia, "Times New Roman", serif !important;
+}
+
+.adt-panel-number,
+.adt-panel-copy {
+  margin: 0 !important;
+  font: 400 1.05rem/1.5 Georgia, "Times New Roman", serif !important;
+}
+
+.adt-think-panel .adt-panel-label {
+  display: inline-block !important;
+  margin-bottom: 0.75rem !important;
+  padding: 0.35rem 1rem !important;
+  border-radius: 0.75rem !important;
+  background: #dc2626 !important;
+  color: #fff !important;
+}
+
+.adt-think-panel .adt-panel-copy + .adt-panel-copy {
+  margin-top: 0.5rem !important;
+}
+
+[data-fragment-source="pg106_sec001.html"] .adt-heading-icon-crop {
+  position: absolute !important;
+  left: 1rem !important;
+  top: 1rem !important;
+  z-index: 2 !important;
+}
+
+[data-fragment-source="pg106_sec001.html"] .adt-think-panel {
+  padding-left: 7rem !important;
 }
 
 .adt-heading-icon-crop + h3.sr-only {
@@ -331,6 +443,7 @@ body.adt-semantic-reader {
   }
   .adt-page-flow { width: 100% !important; height: auto !important; transform: none !important; }
   .adt-source-fragment { margin-bottom: 12px !important; }
+  .adt-layout-template-spacer { display: none !important; }
   .adt-source-fragment *,
   .adt-source-fragment *::before,
   .adt-source-fragment *::after {

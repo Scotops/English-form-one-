@@ -11,6 +11,6 @@
     "The printed folio remains visibly centered on every page and is aria-hidden to avoid duplicate narration.",
     "Text-bearing artwork is replaced by or paired with live semantic HTML where required for complete read-aloud and yellow word highlighting."
   ],
-  "visual_report": "tmp/adt-book-builder/final-visual-approved/book-fidelity-report.json",
+  "visual_report": "tmp/adt-book-builder/release2-visual-approved/book-fidelity-report.json",
   "review_decisions": "quality/visual-review-decisions.json"
 }

@@ -117,6 +117,18 @@ HEADING_PATTERN = re.compile(
     r"glossary|appendix|table of contents)$",
     re.IGNORECASE,
 )
+HEADING_ICON_CROPS = {
+    "pg007_im003": "images/pg007_im003_icon.png",
+    "pg015_im003": "images/pg015_im003_icon.png",
+    "pg106_im003": "images/pg106_im003_icon.png",
+    "pg087_im006_crop_v1": "images/pg087_im006_bar.png",
+}
+HEADING_STRIP_IDS = {"pg087_im006_crop_v1"}
+IMAGE_SRC_OVERRIDES = {
+    # The original composite repeats the live adverb paragraph. The companion
+    # extraction retains the five children and their speech bubbles only.
+    "pg087_im007": "images/pg087_im002.png",
+}
 SUBHEADING_PATTERN = re.compile(
     r"^(activity\s*\d*|exercise\s*\d*|task|questions?|think about)\b",
     re.IGNORECASE,
@@ -173,6 +185,63 @@ def has_visible_semantic_companion(image: etree._Element) -> bool:
                 return True
         boundary = boundary.getparent()
     return False
+
+
+def image_words_are_repeated_in_parent(image: etree._Element, description: str) -> bool:
+    """Detect a text-bearing template whose words already exist as live HTML.
+
+    The retained source fragments sometimes use a raster panel as the visual
+    background and place a complete semantic transcript directly over it.  In
+    that case the raster must be suppressed so words are not displayed or
+    narrated twice, while its box still reserves the source-derived geometry.
+    """
+    parent = image.getparent()
+    if parent is None:
+        return False
+    description_tokens = set(re.findall(r"[a-z0-9]+", description.casefold()))
+    if not description_tokens:
+        return False
+    matched_nodes = 0
+    for candidate in parent.xpath(".//*[@data-id and not(self::img)]"):
+        if not is_visually_exposed(candidate, parent):
+            continue
+        candidate_tokens = set(
+            re.findall(r"[a-z0-9]+", clean_text(element_text(candidate)).casefold())
+        )
+        if not candidate_tokens:
+            continue
+        coverage = len(candidate_tokens & description_tokens) / len(candidate_tokens)
+        if coverage >= 0.8:
+            matched_nodes += 1
+    return matched_nodes >= 2
+
+
+def repeated_words_use_absolute_overlay(image: etree._Element, description: str) -> bool:
+    """Return true when repeated live words are positioned over the image box."""
+    parent = image.getparent()
+    if parent is None:
+        return False
+    description_tokens = set(re.findall(r"[a-z0-9]+", description.casefold()))
+    matched_absolute_nodes = 0
+    for candidate in parent.xpath(".//*[@data-id and not(self::img)]"):
+        candidate_tokens = set(
+            re.findall(r"[a-z0-9]+", clean_text(element_text(candidate)).casefold())
+        )
+        if not candidate_tokens:
+            continue
+        coverage = len(candidate_tokens & description_tokens) / len(candidate_tokens)
+        if coverage < 0.8:
+            continue
+        current: etree._Element | None = candidate
+        uses_absolute_positioning = False
+        while current is not None and current is not parent:
+            if "absolute" in class_tokens(current):
+                uses_absolute_positioning = True
+                break
+            current = current.getparent()
+        if uses_absolute_positioning:
+            matched_absolute_nodes += 1
+    return matched_absolute_nodes >= 2
 
 
 def set_class_tokens(element: etree._Element, tokens: list[str]) -> None:
@@ -286,6 +355,161 @@ def suppress_boundary_decoration(section: etree._Element, page: int) -> None:
             remove_element(child)
 
 
+def semantic_panel(
+    root: etree._Element,
+    identifiers: list[str],
+    panel_class: str,
+    child_classes: list[str],
+) -> None:
+    """Expose an existing hidden transcript as a styled live HTML panel."""
+    nodes: list[etree._Element] = []
+    for identifier in identifiers:
+        matches = root.xpath(f'.//*[@data-id="{identifier}"]')
+        if not matches:
+            return
+        nodes.append(matches[0])
+
+    common_parent = nodes[0].getparent()
+    if common_parent is not None and all(node.getparent() is common_parent for node in nodes):
+        parent_classes = class_tokens(common_parent)
+        parent_is_hidden_transcript = any(
+            token in parent_classes
+            for token in ("sr-only", "opacity-0", "h-px", "w-px", "pointer-events-none")
+        ) or any(token.startswith("-left-") for token in parent_classes)
+        if parent_is_hidden_transcript:
+            common_parent.attrib.clear()
+            common_parent.set("class", panel_class)
+            for node, node_class in zip(nodes, child_classes):
+                node.set("class", node_class)
+            return
+
+    first = nodes[0]
+    parent = first.getparent()
+    if parent is None:
+        return
+    position = parent.index(first)
+    panel = etree.Element("div")
+    panel.set("class", panel_class)
+    parent.insert(position, panel)
+    for node, node_class in zip(nodes, child_classes):
+        node.set("class", node_class)
+        panel.append(node)
+
+
+def restore_hidden_semantic_panels(root: etree._Element, page: int) -> None:
+    """Restore live headings that source fragments placed off-screen."""
+    chapter_panels = {
+        15: ("pg015_n0002", "pg015_n0003"),
+        66: ("pg066_n0002", "pg066_n0003"),
+        106: ("pg106_n0004", "pg106_n0005"),
+    }
+    if page in chapter_panels:
+        semantic_panel(
+            root,
+            list(chapter_panels[page]),
+            "adt-chapter-heading",
+            ["adt-chapter-kicker", "adt-chapter-title"],
+        )
+    if page == 15:
+        semantic_panel(
+            root,
+            ["pg015_n0020", "pg015_n0021"],
+            "adt-activity-heading",
+            ["adt-panel-label", "adt-panel-number"],
+        )
+    if page == 106:
+        semantic_panel(
+            root,
+            ["pg106_n0017", "pg106_n0020", "pg106_n0022"],
+            "adt-think-panel",
+            ["adt-panel-label", "adt-panel-copy", "adt-panel-copy"],
+        )
+        semantic_panel(
+            root,
+            ["pg106_n0024", "pg106_n0025"],
+            "adt-activity-heading",
+            ["adt-panel-label", "adt-panel-copy"],
+        )
+
+
+def subtree_is_effectively_empty(node: etree._Element) -> bool:
+    if node.get("data-id") or node.xpath(".//*[@data-id]") or node.xpath(".//img"):
+        return False
+    value = clean_text(element_text(node))
+    return not value or bool(re.fullmatch(r"[ivxlcdm]+|\d+", value, re.IGNORECASE))
+
+
+def is_effective_edge(
+    node: etree._Element,
+    boundary: etree._Element,
+    from_start: bool,
+) -> bool:
+    current = node
+    while current is not boundary:
+        parent = current.getparent()
+        if parent is None:
+            return False
+        siblings = list(parent)
+        position = siblings.index(current)
+        others = siblings[:position] if from_start else siblings[position + 1 :]
+        if any(not subtree_is_effectively_empty(sibling) for sibling in others):
+            return False
+        current = parent
+    return True
+
+
+def suppress_running_decoration(wrappers: list[etree._Element], page: int) -> None:
+    """Hide only repeated running-page artwork, retaining its page spacing.
+
+    Earlier corrections explicitly removed the green/orange running bands,
+    InDesign marks, and duplicate decorative folios.  A few generated source
+    fragments express those bands as ordinary first/last blocks rather than
+    absolute elements, so the older boundary cleaner did not catch them.
+    """
+    if page == 1:
+        return
+    sections = [section for wrapper in wrappers for section in wrapper.xpath("./section")]
+    if not sections:
+        return
+    for section, from_start in ((sections[0], True), (sections[-1], False)):
+        for child in section.iterdescendants():
+            if not subtree_is_effectively_empty(child):
+                continue
+            if not is_effective_edge(child, section, from_start):
+                continue
+            classes = " ".join(class_tokens(child)).casefold()
+            descendant_classes = " ".join(
+                " ".join(class_tokens(node)).casefold() for node in child.iter()
+            )
+            style_signature = f"{classes} {descendant_classes}"
+            looks_like_running_band = (
+                "pointer-events-none" in style_signature
+                or "bg-teal-500" in style_signature
+                or "bg-orange-500" in style_signature
+                or "from-teal" in style_signature
+                or "to-teal" in style_signature
+                or "via-orange" in style_signature
+                or "bg-cyan" in style_signature
+            )
+            if not looks_like_running_band:
+                continue
+            # Preserve the source vertical rhythm but remove all visible and
+            # spoken production artwork.  The canonical folio is added later.
+            if child.tag == "img":
+                remove_element(child)
+                continue
+            retained_classes = class_tokens(child)
+            for nested in list(child):
+                child.remove(nested)
+            child.text = None
+            child.attrib.clear()
+            child.set(
+                "class",
+                " ".join([*retained_classes, "adt-running-decoration-removed"]),
+            )
+            child.set("aria-hidden", "true")
+
+
 def clean_fragment(
     root: etree._Element,
     page: int,
@@ -364,6 +588,8 @@ def clean_fragment(
             image.set("aria-hidden", "true")
             continue
         described_image_ids.add(identifier)
+        if identifier in IMAGE_SRC_OVERRIDES:
+            image.set("src", IMAGE_SRC_OVERRIDES[identifier])
         description = clean_text(
             str(
                 missing_descriptions.get(identifier)
@@ -379,11 +605,20 @@ def clean_fragment(
             )
             texts[identifier] = description
         lowered_description = description.casefold()
+        repeated_in_parent = image_words_are_repeated_in_parent(image, description)
         redundant_heading = (
             identifier in question_transcripts
             or lowered_description.startswith(
-                ("questions", "activity", "chapter", "exercise", "task heading")
+                (
+                    "questions",
+                    "activity",
+                    "chapter",
+                    "exercise",
+                    "task heading",
+                    "think about",
+                )
             )
+            or repeated_in_parent
         ) and has_visible_semantic_companion(image)
         if redundant_heading:
             image.set("data-source-id", identifier)
@@ -391,8 +626,29 @@ def clean_fragment(
             image.set("alt", "")
             image.set("role", "presentation")
             image.set("aria-hidden", "true")
-            classes = class_tokens(image)
-            if identifier in question_transcripts:
+            # A source `hidden` class may already have been converted to the
+            # one-pixel narration helper.  Template images are decorative and
+            # must keep either their natural box or no box at all, never the
+            # helper's forced 1px by 1px geometry.
+            classes = [
+                token for token in class_tokens(image)
+                if token != "adt-narration-only"
+            ]
+            if repeated_in_parent and repeated_words_use_absolute_overlay(image, description):
+                # The complete semantic copy is already positioned over the
+                # source template.  Keep the template's dimensions as a hidden
+                # spacer so the live words remain in their exact source box.
+                classes.append("adt-layout-template-spacer")
+                parent = image.getparent()
+                if parent is not None and "question" in lowered_description:
+                    parent_classes = class_tokens(parent)
+                    parent_classes.append("adt-semantic-question-shell")
+                    set_class_tokens(parent, parent_classes)
+            elif repeated_in_parent:
+                # A normal-flow semantic replacement follows the obsolete
+                # source template; collapse the template to avoid a blank box.
+                classes.append("adt-layout-template-hidden")
+            elif identifier in question_transcripts:
                 classes.append("adt-layout-template-hidden")
                 parent = image.getparent()
                 if parent is not None:
@@ -406,8 +662,14 @@ def clean_fragment(
                     parent.append(copy_node)
                     texts[identifier] = question_transcripts[identifier]
                     texts[f"{identifier}_easy_read"] = question_transcripts[identifier]
-            elif lowered_description.startswith(("exercise", "task heading")):
-                classes.append("adt-heading-icon-crop")
+            elif lowered_description.startswith(("exercise", "task heading", "think about")):
+                if identifier in HEADING_ICON_CROPS:
+                    image.set("src", HEADING_ICON_CROPS[identifier])
+                classes.append(
+                    "adt-heading-strip"
+                    if identifier in HEADING_STRIP_IDS
+                    else "adt-heading-icon-crop"
+                )
             else:
                 classes.append("adt-layout-template-hidden")
             image.set("class", " ".join(dict.fromkeys(classes)))
@@ -425,6 +687,7 @@ def clean_fragment(
             section.set("data-activity-id", section.get("data-section-id") or f"page-{page}")
 
     promote_headings(root)
+    restore_hidden_semantic_panels(root, page)
     normalize_tables(root, page)
 
     seen: set[str] = set()
@@ -636,6 +899,7 @@ def main() -> None:
                 for path in source_files
             ]
         )
+        suppress_running_decoration(wrappers, page_number)
         box = pdf_page.mediabox
         width = float(box.width)
         height = float(box.height)

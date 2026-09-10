@@ -76,9 +76,48 @@ try {
   const tocNarrated = await page.locator("#content [data-id]").allInnerTexts();
   assert(!tocNarrated.some(text => /front matter page|printed book page/i.test(text)), "table of contents omits reader-only page labels");
 
+  await open("pg008_sec001.html");
+  const repeatedQuestionCount = await page.locator("#content").evaluate(root => {
+    const text = root.innerText;
+    return (text.match(/What is the poem about\?/g) || []).length;
+  });
+  assert(repeatedQuestionCount === 1, "printed page 2 displays the question text exactly once");
+  const runningDecorationVisible = await page.locator(".adt-running-decoration-removed").evaluateAll(nodes =>
+    nodes.some(node => {
+      const style = getComputedStyle(node);
+      return style.display !== "none" && style.visibility !== "hidden" && Number.parseFloat(style.opacity) !== 0;
+    })
+  );
+  assert(!runningDecorationVisible, "removed running-page artwork is not visible");
+
   await open("pg005_sec001.html");
   const editorCredit = await page.locator('[data-id="pg005_credit_editors"]').innerText();
   assert(/^Editors:/i.test(editorCredit) && /Emmanuel P\. Lema/.test(editorCredit), "acknowledgements include the complete Editors credit");
+
+  for (const [file, id, label] of [
+    ["pg015_sec001.html", "pg015_n0002", "Chapter Two"],
+    ["pg066_sec001.html", "pg066_n0002", "Chapter Five"],
+    ["pg106_sec001.html", "pg106_n0004", "Chapter Seven"],
+  ]) {
+    await open(file);
+    const heading = page.locator(`[data-id="${id}"]`);
+    assert(await heading.isVisible() && (await heading.innerText()).trim() === label, `${label} is complete visible live HTML`);
+  }
+
+  await open("pg087_sec001.html");
+  const adverbParagraphCount = await page.locator("#content").evaluate(root =>
+    (root.innerText.match(/Hi! My task is to tell how, where, when, and how many times something has happened\./g) || []).length
+  );
+  assert(adverbParagraphCount === 1, "printed page 81 displays the adverb paragraph exactly once");
+
+  await open("pg097_sec001.html");
+  const remainingEdgeDecoration = await page.locator(".adt-running-decoration-removed").evaluateAll(nodes =>
+    nodes.some(node => {
+      const style = getComputedStyle(node);
+      return style.display !== "none" && style.visibility !== "hidden" && Number.parseFloat(style.opacity) !== 0;
+    })
+  );
+  assert(!remainingEdgeDecoration, "flat page-edge running artwork is also removed");
 
   await open("pg071_sec001.html");
   const questionText = await page.locator('[data-id="pg071_im003"]').innerText();

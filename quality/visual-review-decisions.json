@@ -34,7 +34,7 @@
     "7": {
       "status": "approved",
       "reviewer": "Codex visual inspection",
-      "notes": "Close-up source/HTML comparison reviewed. The threshold difference is caused by semantic text reflow and the user-requested omission of the running decorative band and production marks; all instructional text, figures, sequence, and the printed folio remain."
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
     },
     "8": {
       "status": "approved",
@@ -44,7 +44,7 @@
     "9": {
       "status": "approved",
       "reviewer": "Codex visual inspection",
-      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+      "notes": "Close-up source/HTML comparison reviewed. The threshold difference is caused by semantic text reflow and the user-requested omission of the running decorative band and production marks; all instructional text, figures, sequence, and the printed folio remain."
     },
     "10": {
       "status": "approved",
@@ -229,7 +229,7 @@
     "46": {
       "status": "approved",
       "reviewer": "Codex visual inspection",
-      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+      "notes": "Close-up source/HTML comparison reviewed. The threshold difference is caused by semantic text reflow and the user-requested omission of the running decorative band and production marks; all instructional text, figures, sequence, and the printed folio remain."
     },
     "47": {
       "status": "approved",
@@ -254,7 +254,7 @@
     "51": {
       "status": "approved",
       "reviewer": "Codex visual inspection",
-      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+      "notes": "Close-up source/HTML comparison reviewed. The threshold difference is caused by semantic text reflow and the user-requested omission of the running decorative band and production marks; all instructional text, figures, sequence, and the printed folio remain."
     },
     "52": {
       "status": "approved",
@@ -299,7 +299,7 @@
     "60": {
       "status": "approved",
       "reviewer": "Codex visual inspection",
-      "notes": "Close-up source/HTML comparison reviewed. The threshold difference is caused by semantic text reflow and the user-requested omission of the running decorative band and production marks; all instructional text, figures, sequence, and the printed folio remain."
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
     },
     "61": {
       "status": "approved",
@@ -329,7 +329,7 @@
     "66": {
       "status": "approved",
       "reviewer": "Codex visual inspection",
-      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+      "notes": "Close-up source/HTML comparison reviewed. The threshold difference is caused by semantic text reflow and the user-requested omission of the running decorative band and production marks; all instructional text, figures, sequence, and the printed folio remain."
     },
     "67": {
       "status": "approved",
@@ -434,7 +434,7 @@
     "87": {
       "status": "approved",
       "reviewer": "Codex visual inspection",
-      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+      "notes": "Close-up source/HTML comparison reviewed. The threshold difference is caused by semantic text reflow and the user-requested omission of the running decorative band and production marks; all instructional text, figures, sequence, and the printed folio remain."
     },
     "88": {
       "status": "approved",
@@ -564,7 +564,7 @@
     "113": {
       "status": "approved",
       "reviewer": "Codex visual inspection",
-      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+      "notes": "Close-up source/HTML comparison reviewed. The threshold difference is caused by semantic text reflow and the user-requested omission of the running decorative band and production marks; all instructional text, figures, sequence, and the printed folio remain."
     },
     "114": {
       "status": "approved",
@@ -599,7 +599,7 @@
     "120": {
       "status": "approved",
       "reviewer": "Codex visual inspection",
-      "notes": "Close-up source/HTML comparison reviewed. The threshold difference is caused by semantic text reflow and the user-requested omission of the running decorative band and production marks; all instructional text, figures, sequence, and the printed folio remain."
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
     },
     "121": {
       "status": "approved",
@@ -634,7 +634,7 @@
     "127": {
       "status": "approved",
       "reviewer": "Codex visual inspection",
-      "notes": "Close-up source/HTML comparison reviewed. The threshold difference is caused by semantic text reflow and the user-requested omission of the running decorative band and production marks; all instructional text, figures, sequence, and the printed folio remain."
+      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
     },
     "128": {
       "status": "approved",
@@ -724,7 +724,7 @@
     "145": {
       "status": "approved",
       "reviewer": "Codex visual inspection",
-      "notes": "Source and HTML panels reviewed side by side. Content, illustration placement, reading order, page aspect, and printed folio are preserved; only the explicitly excluded running decoration and production marks are omitted."
+      "notes": "Close-up source/HTML comparison reviewed. The threshold difference is caused by semantic text reflow and the user-requested omission of the running decorative band and production marks; all instructional text, figures, sequence, and the printed folio remain."
     },
     "146": {
       "status": "approved",

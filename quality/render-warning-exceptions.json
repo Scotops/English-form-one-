@@ -1,15 +1,15 @@
 {
   "schema_version": 1,
-  "report": "tmp/adt-book-builder/final-render-current/render-audit.json",
+  "report": "tmp/adt-book-builder/release2-merged/render-audit.json",
   "accepted": [
     {
       "code": "image-hidden",
-      "count": 146,
+      "count": 177,
       "reason": "These notices cover intentionally suppressed text-bearing template artwork and requested running-page decoration. Live semantic HTML renders and narrates the same textbook content without duplicate words."
     },
     {
       "code": "image-clipped",
-      "count": 158,
+      "count": 167,
       "reason": "These notices cover deliberately cropped heading/icon source assets and artwork inside rounded overflow containers. All 192 desktop and mobile captures were visually inspected; no meaningful content is clipped."
     }
   ]

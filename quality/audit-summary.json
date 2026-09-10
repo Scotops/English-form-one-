@@ -5,27 +5,27 @@
   "one_to_one_pages": 192,
   "static_audit": {
     "errors": 0,
-    "warnings": 12,
-    "report": "tmp/adt-book-builder/final-static-approved/adt-audit.json"
+    "warnings": 7,
+    "report": "tmp/adt-book-builder/release2-static/adt-audit.json"
   },
   "browser_render_audit": {
     "desktop_and_mobile_views": 384,
     "errors": 0,
-    "warnings": 304,
-    "report": "tmp/adt-book-builder/final-render-current/render-audit.json"
+    "warnings": 344,
+    "report": "tmp/adt-book-builder/release2-merged/render-audit.json"
   },
   "resolved_text_fidelity": {
     "unresolved_errors": 0,
-    "report": "tmp/adt-book-builder/final-resolved-fidelity-approved/resolved-fidelity-contract.json"
+    "report": "tmp/adt-book-builder/release2-resolved/resolved-fidelity-contract.json"
   },
   "narration_review": {
-    "canonical_page_ids": 5882,
-    "approved_entries": 11514,
+    "canonical_page_ids": 5835,
+    "approved_entries": 11450,
     "failures": 0,
-    "report": "tmp/adt-book-builder/narration/narration-plan-final-reviewed-current.json"
+    "report": "tmp/adt-book-builder/release2-narration/reviewed.json"
   },
   "reader_interaction_test": {
-    "checks": 15,
+    "checks": 22,
     "failures": 0,
     "script": "tools/test_reader_runtime.mjs"
   },
@@ -33,9 +33,9 @@
     "compared_pages": 192,
     "approved_pages": 192,
     "errors": 0,
-    "warnings": 11,
+    "warnings": 14,
     "exact_layout_verified": true,
-    "report": "tmp/adt-book-builder/final-visual-approved/book-fidelity-report.json",
+    "report": "tmp/adt-book-builder/release2-visual-approved/book-fidelity-report.json",
     "decisions": "quality/visual-review-decisions.json"
   }
 }
