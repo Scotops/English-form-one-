@@ -143,83 +143,6 @@ main {
   z-index: 60;
 }
 
-.adt-exercise-workspace {
-  width: min(720px, calc(100vw - 32px));
-  margin: 18px auto 0;
-  border: 1px solid #9bbeb5;
-  border-radius: 14px;
-  background: #fff;
-  box-shadow: 0 10px 24px rgb(32 65 56 / 12%);
-  font: 16px/1.45 system-ui, sans-serif;
-}
-
-.adt-exercise-workspace[data-activity-count="0"] {
-  display: none;
-}
-
-.adt-workspace-toggle {
-  width: 100%;
-  padding: 13px 18px;
-  border: 0;
-  border-radius: 14px;
-  color: #fff;
-  background: #087f70;
-  font: inherit;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-.adt-workspace-panel {
-  padding: 18px;
-}
-
-.adt-workspace-panel label {
-  display: block;
-  margin: 8px 0 5px;
-  font-weight: 700;
-}
-
-.adt-workspace-panel select,
-.adt-workspace-panel textarea {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #718e87;
-  border-radius: 8px;
-  color: #111;
-  background: #fff;
-  font: inherit;
-}
-
-.adt-workspace-panel textarea {
-  min-height: 150px;
-  resize: vertical;
-}
-
-.adt-workspace-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 12px;
-}
-
-.adt-workspace-actions button {
-  min-height: 44px;
-  padding: 9px 15px;
-  border: 1px solid #087f70;
-  border-radius: 8px;
-  background: #f3fffb;
-  font: inherit;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-.adt-workspace-status {
-  min-height: 1.5em;
-  margin: 10px 0 0;
-  color: #265f55;
-}
-
-.adt-exercise-workspace :focus-visible,
 .semantic-layer :focus-visible {
   outline: 3px solid #1d70b8;
   outline-offset: 3px;
@@ -348,7 +271,6 @@ main {
     page-break-after: always;
   }
 
-  .adt-exercise-workspace,
   #interface-container,
   #nav-container {
     display: none !important;

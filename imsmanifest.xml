@@ -19,7 +19,6 @@
   <resources>
     <resource identifier="RESOURCE_1" type="webcontent" adlcp:scormtype="sco" href="index.html">
       <file href=".nojekyll"/>
-      <file href="assets/adt-activities.js"/>
       <file href="assets/auto-fit.js"/>
       <file href="assets/base.bundle.local.js"/>
       <file href="assets/base.bundle.min.js"/>

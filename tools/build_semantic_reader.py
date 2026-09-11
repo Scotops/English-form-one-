@@ -762,7 +762,6 @@ def page_html(page: int, wrappers: list[etree._Element], width: float, height: f
     fragments = "\n".join(
         etree.tostring(wrapper, encoding="unicode", method="html") for wrapper in wrappers
     )
-    activity_count = sum(len(wrapper.xpath('.//*[@data-activity-id]')) for wrapper in wrappers)
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -790,20 +789,6 @@ def page_html(page: int, wrappers: list[etree._Element], width: float, height: f
         <span class="adt-printed-page-number" aria-hidden="true">{html_lib.escape(folio)}</span>
       </div>
     </div>
-    <aside class="adt-exercise-workspace" id="adt-exercise-workspace" aria-label="Exercise response workspace" data-activity-count="{activity_count}">
-      <button class="adt-workspace-toggle" type="button" aria-expanded="false" aria-controls="adt-workspace-panel">Exercise workspace</button>
-      <div class="adt-workspace-panel" id="adt-workspace-panel" hidden>
-        <label for="adt-activity-select">Choose an activity</label>
-        <select id="adt-activity-select"></select>
-        <label for="adt-activity-response">Your response</label>
-        <textarea id="adt-activity-response" rows="8"></textarea>
-        <div class="adt-workspace-actions">
-          <button type="button" id="adt-response-save">Save response</button>
-          <button type="button" id="adt-response-clear">Clear response</button>
-        </div>
-        <p class="adt-workspace-status" id="adt-workspace-status" role="status" aria-live="polite"></p>
-      </div>
-    </aside>
   </main>
   <div class="relative z-50" id="interface-container"></div>
   <div class="relative z-50" id="nav-container"></div>
@@ -811,7 +796,6 @@ def page_html(page: int, wrappers: list[etree._Element], width: float, height: f
   <script src="./assets/scorm.js"></script>
   <script src="./assets/facsimile-highlight.js?v=5"></script>
   <script src="./assets/semantic-layout.js?v=1"></script>
-  <script src="./assets/adt-activities.js?v=1"></script>
   <script src="./assets/base.bundle.local.js"></script>
 </body>
 </html>

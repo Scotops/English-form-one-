@@ -146,16 +146,8 @@ try {
     hasNarrationId: node.hasAttribute("data-id"),
   }));
   assert(folioNarrationState.hiddenByVisualLayer && !folioNarrationState.hasNarrationId, "printed folio is not redundantly narrated");
-  await page.locator(".adt-workspace-toggle").click();
-  const optionCount = await page.locator("#adt-activity-select option").count();
-  assert(optionCount >= 2, "interactive workspace detects both exercises on the page");
-  await page.locator("#adt-activity-response").fill("Runtime persistence check");
-  await page.locator("#adt-response-save").click();
-  await page.reload({ waitUntil: "networkidle" });
-  await page.locator(".adt-workspace-toggle").click();
-  assert(await page.locator("#adt-activity-response").inputValue() === "Runtime persistence check", "exercise response persists after reload");
-  await page.locator("#adt-response-clear").click();
-  assert(await page.locator("#adt-activity-response").inputValue() === "", "exercise response Clear control works");
+  assert(await page.locator(".adt-exercise-workspace, .adt-workspace-toggle").count() === 0, "exercise workspace is completely removed");
+  assert(await page.locator('script[src*="adt-activities.js"]').count() === 0, "exercise workspace script is not loaded");
 
   assert(consoleErrors.length === 0, `runtime produced no browser errors (observed ${consoleErrors.length})`);
 } finally {

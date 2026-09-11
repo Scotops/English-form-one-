@@ -6,7 +6,7 @@
   "static_audit": {
     "errors": 0,
     "warnings": 7,
-    "report": "tmp/adt-book-builder/final-static/adt-audit.json"
+    "report": "tmp/adt-book-builder/no-workspace-static/adt-audit.json"
   },
   "browser_render_audit": {
     "desktop_and_mobile_views": 384,
@@ -29,9 +29,19 @@
     "report": "tmp/adt-book-builder/exact-narration/reviewed.json"
   },
   "reader_interaction_test": {
-    "checks": 22,
+    "checks": 21,
     "failures": 0,
     "script": "tools/test_reader_runtime.mjs"
+  },
+  "exercise_workspace_removal": {
+    "canonical_pages_checked": 192,
+    "workspace_markup_references": 0,
+    "workspace_script_references": 0,
+    "generator_references": 0,
+    "representative_desktop_and_mobile_views": 6,
+    "render_errors": 0,
+    "render_report": "tmp/adt-book-builder/no-workspace-render/render-audit.json",
+    "passed": true
   },
   "visual_review": {
     "compared_pages": 192,

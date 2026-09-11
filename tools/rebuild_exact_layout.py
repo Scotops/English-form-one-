@@ -392,23 +392,6 @@ def converted_word_map(book: Path, reader_page: Any, page_number: int) -> dict[s
     return result
 
 
-def workspace_html(activity_count: int) -> str:
-    return f'''<aside class="adt-exercise-workspace" id="adt-exercise-workspace" aria-label="Exercise response workspace" data-activity-count="{activity_count}">
-      <button class="adt-workspace-toggle" type="button" aria-expanded="false" aria-controls="adt-workspace-panel">Exercise workspace</button>
-      <div class="adt-workspace-panel" id="adt-workspace-panel" hidden>
-        <label for="adt-activity-select">Choose an activity</label>
-        <select id="adt-activity-select"></select>
-        <label for="adt-activity-response">Your response</label>
-        <textarea id="adt-activity-response" rows="8"></textarea>
-        <div class="adt-workspace-actions">
-          <button type="button" id="adt-response-save">Save response</button>
-          <button type="button" id="adt-response-clear">Clear response</button>
-        </div>
-        <p class="adt-workspace-status" id="adt-workspace-status" role="status" aria-live="polite"></p>
-      </div>
-    </aside>'''
-
-
 def page_template(
     page_number: int,
     folio: str,
@@ -419,7 +402,6 @@ def page_template(
     font_rules: str,
     semantics: str,
     word_map: dict[str, Any],
-    activity_count: int,
 ) -> str:
     section_id = f"pg{page_number:03d}_sec001"
     title = f"{TITLE} — printed page {folio}"
@@ -456,7 +438,6 @@ def page_template(
         </div>
       </article>
     </div>
-    {workspace_html(activity_count)}
   </main>
   <div id="interface-container"></div>
   <div id="nav-container"></div>
@@ -465,7 +446,6 @@ def page_template(
   <script src="./assets/offline-preloader.js?v=8"></script>
   <script src="./assets/scorm.js"></script>
   <script src="./assets/word-highlight-sync.js?v=1"></script>
-  <script src="./assets/adt-activities.js?v=1"></script>
   <script src="./assets/base.bundle.local.js"></script>
 </body>
 </html>
@@ -516,7 +496,6 @@ def main() -> int:
                     font_rules,
                     semantics,
                     word_map,
-                    activity_count,
                 )
             generated_html = re.sub(r"[ \t]+(?=\n)", "", generated_html)
             path.write_text(generated_html, encoding="utf-8", newline="\n")
